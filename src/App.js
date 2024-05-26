@@ -20,6 +20,7 @@ import ThemeInfo from "./Components/ThemeInfo";
 import SubmitInfo from "./Components/SubmitInfo";
 import AdminDashboard from "./Pages/AdminDashboard";
 import NoUser from "./Pages/NoUser";
+import UserHome from "./Pages/UserHome";
 
 
 function App() {
@@ -51,7 +52,7 @@ function App() {
       path: "/:username",
       element: <UserHeader />,
       children: [
-        { path: "home", element: <Home /> },
+        { index:true , element: <UserHome /> },
         // { path: "education", element: <Education /> }
       ]
     },

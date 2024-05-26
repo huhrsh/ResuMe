@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, Outlet } from "react-router-dom";
+import { useParams, useNavigate, Outlet, Link } from "react-router-dom";
 import { db } from "../Firebase";
 import { doc, getDoc, query, collection, where, getDocs } from "firebase/firestore";
 import { toast } from "react-toastify";
@@ -41,12 +41,21 @@ export default function UserHeader() {
         return <div>Loading...</div>; 
     }
 
+    const desiredOrder = ['education', 'projects', 'experience', 'certifications', 'skills', 'contacts'];
+    let sections=Object.keys(userDetails.selectedSections).filter(section => userDetails.selectedSections[section]).sort((a, b) => desiredOrder.indexOf(a) - desiredOrder.indexOf(b));
+
+
     return (
         <>
-            <header>
-                asdadad
+            <header className={`flex justify-between items-center fixed z-50 px-12 py-4 w-screen text-white`} style={{fontFamily:userDetails.selectedFont?userDetails.selectedFont:"outfit", fontSize:userDetails.selectedSize?userDetails.selectedSize:24}}>
+                <Link className="cursor-pointer" to={`/`+userDetails.username}>{userDetails.username}</Link> 
+                <div className="flex gap-8" style={{fontFamily:userDetails.selectedFont?userDetails.selectedFont:"outfit", fontSize:userDetails.selectedSize?userDetails.selectedSize/1.4:24/1.4}}>
+                    {sections?.map((section,index)=>(
+                        <Link to={section} className="">{section}</Link>
+                    ))}
+                </div>
             </header>
-            <Outlet />
+            <Outlet context={userDetails} />
         </>
     );
 }
