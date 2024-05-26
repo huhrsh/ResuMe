@@ -73,9 +73,11 @@ export default function SignUp() {
                     else {
                         const userDoc = await setDoc(doc(db, 'users', user.uid), {
                             name: user.displayName,
-                            email: user.email
+                            email: user.email,
+                            authorized:false,
+                            websiteActive:false
                         })
-                        setUser({ uid: user.uid, name: user.displayName, email: user.email })
+                        setUser({ uid: user.uid, name: user.displayName, email: user.email, authorized:false, websiteActive:false })
                         // if (userDoc) {
                         // toast.success("Account created.")
                         // navigate('/sign-in')

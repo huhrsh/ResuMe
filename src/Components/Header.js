@@ -35,10 +35,10 @@ export default function Header() {
                 <div className="flex justify-between min-w-56 text-lg font-medium gap-6">
                     {user ?
                         user.resume ?
-                            <Link className="flex-shrink-0 rounded text-purple-800 px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/user-info/basics'>
+                            <Link className="flex-shrink-0 rounded text-purple-800 px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/user-info/general'>
                                 Modify website
                             </Link> :
-                            <Link className="flex-shrink-0 rounded text-purple-800 px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/user-info/basics'>
+                            <Link className="flex-shrink-0 rounded text-purple-800 px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/user-info/general'>
                                 Create website
                             </Link>
                         :
@@ -48,7 +48,7 @@ export default function Header() {
                     }
                     {
                         user ?
-                            <button className="rounded text-rose-700 px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-rose-700" onClick={(e) => { handleSignOut(e) }}>
+                            <button className="rounded text-rose-600 px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-rose-600" onClick={(e) => { handleSignOut(e) }}>
                                 Sign out
                             </button> :
                             <Link className="rounded text-purple-800 px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-in'>

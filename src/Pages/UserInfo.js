@@ -25,7 +25,7 @@ export default function UserInfo() {
     }, [location.pathname]);
 
     const navLinks = [
-        { to: "basics", label: "Basics" },
+        { to: "general", label: "General" },
         { to: "about", label: "About" },
         { to: "education", label: "Education" },
         { to: "experience", label: "Work Experience" },

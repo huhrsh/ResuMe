@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, deleteUser, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, deleteUser, signInWithPopup, signOut } from "firebase/auth";
 import { auth, db, provider } from "../Firebase";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
@@ -24,13 +24,13 @@ export default function SignUp() {
     const confirmPasswordInputRef = useRef(null);
     const nameInputRef = useRef(null);
 
-    useEffect(()=>{
+    useEffect(() => {
         setLoading(true);
-        if(user){
+        if (user) {
             navigate('/');
         }
         setLoading(false)
-    },[])
+    }, [])
 
     async function handleSignUp(e) {
         e.preventDefault();
@@ -44,7 +44,6 @@ export default function SignUp() {
         passwordInputRef.current.blur();
         nameInputRef.current.blur();
         confirmPasswordInputRef.current.blur();
-        console.log(email, password, name, confirmPassword)
         if (password !== confirmPassword) {
             toast.error("Passwords do not match");
             return;
@@ -53,15 +52,18 @@ export default function SignUp() {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password)
             const user = userCredential.user;
             if (user) {
+                console.log("inside user");
                 try {
                     const userDoc = await setDoc(doc(db, 'users', user.uid), {
                         name: name,
-                        email: email
+                        email: email,
+                        authorized:false,
+                        resume:false
                     })
-                    if (userDoc) {
-                        toast.success("Account created.")
-                        navigate('/sign-in')
-                    }
+                    console.log("Inside userdoc")
+                    toast.success("Account created.")
+                    await signOut(auth)
+                    navigate('/sign-in')
                 }
                 catch (error) {
                     try {
@@ -95,25 +97,27 @@ export default function SignUp() {
             // console.log(result)
             const user = result.user;
             console.log(user);
-            if(user){
+            if (user) {
                 try {
-                    const userSnap = await getDoc(doc(db,'users',user.uid))
-                    if(userSnap.exists()){
-                        setUser({uid:user.uid, ...userSnap.data()})
+                    const userSnap = await getDoc(doc(db, 'users', user.uid))
+                    if (userSnap.exists()) {
+                        setUser({ uid: user.uid, ...userSnap.data() })
                     }
-                    else{
+                    else {
                         const userDoc = await setDoc(doc(db, 'users', user.uid), {
                             name: user.displayName,
-                            email: user.email
+                            email: user.email,
+                            authorized:false,
+                            websiteActive:false
                         })
-                        setUser({uid:user.uid, name:user.displayName, email:user.email})
+                        setUser({ uid: user.uid, name: user.displayName, email: user.email, authorized:false, websiteActive:false })
                         // if (userDoc) {
-                            // toast.success("Account created.")
-                            // navigate('/sign-in')
+                        // toast.success("Account created.")
+                        // navigate('/sign-in')
                         // }
                     }
                 }
-                catch(error){
+                catch (error) {
                     console.log("error in creating user");
                 }
             }

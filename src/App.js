@@ -30,7 +30,7 @@ function App() {
         { path: "/sign-up", element: <SignUp /> },
         { path: "/user-info", element: <UserInfo /> ,
           children:[
-            {path:"basics", element:<UsernameInfo/>},
+            {path:"general", element:<UsernameInfo/>},
             {path:"about",element:<AboutInfo/>},
             {path:"education",element:<EducationInfo/>},
             {path:"experience",element:<ExperienceInfo/>},
