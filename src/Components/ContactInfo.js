@@ -67,7 +67,7 @@ export default function ContactInfo() {
                             <input
                                 type="text"
                                 value={contact.label}
-                                placeholder="e.g., Email"
+                                placeholder="Email"
                                 onChange={(e) => handleContactChange(index, "label", e.target.value)}
                                 className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600"
                                 required
@@ -78,7 +78,7 @@ export default function ContactInfo() {
                             <input
                                 type="text"
                                 value={contact.value}
-                                placeholder="e.g., user@example.com"
+                                placeholder="user@example.com"
                                 onChange={(e) => handleContactChange(index, "value", e.target.value)}
                                 className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600"
                                 required

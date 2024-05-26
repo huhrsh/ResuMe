@@ -116,7 +116,7 @@ export default function ProjectInfo() {
                     });
                 }
 
-                updatedProjects[i].image = imageUrl || project.image; 
+                updatedProjects[i].image = imageUrl || project.image;
             }
 
             await updateDoc(doc(db, 'users', user.uid), { projects: updatedProjects });
@@ -256,7 +256,7 @@ export default function ProjectInfo() {
                                         className="border hover:shadow-lg focus-within:shadow-lg rounded-xl outline-none w-full h-full px-2 py-4 font-medium text-gray-600 flex-grow"
                                         required
                                     />
-                                    <img src={deleteImage} alt="delete" className="bg-white aspect-square flex-shrink-0 rounded-full w-8 cursor-pointer object-contain hover:shadow-lg hover:scale-110 transition-all duration-200" onClick={() => removePoint(projectIndex, "lessons", lessonIndex)}/>
+                                    <img src={deleteImage} alt="delete" className="bg-white aspect-square flex-shrink-0 rounded-full w-8 cursor-pointer object-contain hover:shadow-lg hover:scale-110 transition-all duration-200" onClick={() => removePoint(projectIndex, "lessons", lessonIndex)} />
                                 </div>
                             ))}
                             <button
@@ -285,6 +285,15 @@ export default function ProjectInfo() {
                     </button>
                 </div>
             </form>
+            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 bg-purple-50">
+                <h3 className="text-2xl font-bold text-gray-600">Tips that might help you</h3>
+                <ul>
+                    <li className="list-disc ml-6 font-medium text-lg text-gray-700">Rest assured, if you've already uploaded an image and it displays as "No file chosen,"
+                        <li>
+                            it means only the files you select will appear, not the existing photos.</li>
+                    </li>
+                </ul>
+            </section>
         </section>
     );
 }

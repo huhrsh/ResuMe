@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../Context";
+import { label } from "three/examples/jsm/nodes/Nodes.js";
 
 export default function UserInfo() {
     const navigate = useNavigate()
@@ -15,8 +16,10 @@ export default function UserInfo() {
     const [pathName, setPathName] = useState(getEndUrlPart());
 
     useEffect(() => {
-        if (!loading && !user) {
-            navigate('/');
+        if (!loading) {
+            if( !user){
+                navigate('/');
+            }
         }
     }, [user, loading]);
 
@@ -34,6 +37,7 @@ export default function UserInfo() {
         { to: "skills", label: "Skills" },
         { to: "contacts", label: "Contacts" },
         { to: "themes", label: "Themes" },
+        {to: "submit", label:"Submit for approval"}
         // { to: "colors", label: "Colors" },
         // { to: "fonts", label: "Fonts" }
     ];

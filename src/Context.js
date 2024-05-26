@@ -8,7 +8,7 @@ const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setLoading(true)
@@ -18,6 +18,13 @@ export const UserProvider = ({ children }) => {
                 if (docSnap.exists()) {
                     setUser({ uid: user.uid, ...docSnap.data() });
                     setLoading(false)
+                }
+                else {
+                    const adminDocSnap = await getDoc(doc(db, "admin", user.uid))
+                    if (adminDocSnap.exists()) {
+                        setUser({ uid: user.uid, ...adminDocSnap.data() });
+                        setLoading(false)
+                    }
                 }
             } else {
                 setUser(null);

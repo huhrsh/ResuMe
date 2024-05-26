@@ -4,8 +4,7 @@ import Header from "./Components/Header";
 import Error from "./Pages/Error";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
-import { UserProvider, useUser } from "./Context";
-import Loading from "./Pages/Loading";
+import { UserProvider } from "./Context";
 import 'react-toastify/dist/ReactToastify.css';
 import UserHeader from "./Components/UserHeader";
 import UserInfo from "./Pages/UserInfo";
@@ -18,6 +17,9 @@ import CertificationInfo from "./Components/CertificationInfo";
 import SkillInfo from "./Components/SkillInfo";
 import ContactInfo from "./Components/ContactInfo";
 import ThemeInfo from "./Components/ThemeInfo";
+import SubmitInfo from "./Components/SubmitInfo";
+import AdminDashboard from "./Pages/AdminDashboard";
+import NoUser from "./Pages/NoUser";
 
 
 function App() {
@@ -28,7 +30,8 @@ function App() {
         { index: true, element: <Home /> },
         { path: "/sign-in", element: <SignIn /> },
         { path: "/sign-up", element: <SignUp /> },
-        { path: "/user-info", element: <UserInfo /> ,
+        { path: "/admin-dashboard", element: <AdminDashboard /> },
+        { path: "/dashboard", element: <UserInfo /> ,
           children:[
             {path:"general", element:<UsernameInfo/>},
             {path:"about",element:<AboutInfo/>},
@@ -39,19 +42,20 @@ function App() {
             {path:"skills",element:<SkillInfo/>},
             {path:"contacts",element:<ContactInfo/>},
             {path:"themes",element:<ThemeInfo/>},
-            // {path:"fonts",element:<FontInfo/>},
+            {path:"submit",element:<SubmitInfo/>},
           ]
         },
       ],
     },
     {
-      path: "/u/:username",
+      path: "/:username",
       element: <UserHeader />,
       children: [
         { path: "home", element: <Home /> },
         // { path: "education", element: <Education /> }
       ]
     },
+    { path: "/no-user", element: <NoUser /> },
     { path: "*", element: <Error /> }
   ]);
 

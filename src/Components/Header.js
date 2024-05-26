@@ -8,19 +8,18 @@ import { auth } from "../Firebase";
 import { signOut } from "firebase/auth";
 
 export default function Header() {
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     const handleSignOut = async (e) => {
         e.preventDefault();
         try {
+            navigate('/')
             await signOut(auth);
             toast.success('Signed out successfully!');
-            navigate('/')
         } catch (error) {
             toast.error('Error signing out');
             console.error('Error during sign out:', error);
         }
     };
-
     const { user, loading } = useUser();
     return (
         <>
@@ -31,33 +30,41 @@ export default function Header() {
                     <img src={profile} alt="logo" className="h-8 logo" />
                     ResuMe
                 </Link>
-                {!loading &&
-                <div className="flex justify-between min-w-56 text-lg font-medium gap-6">
-                    {user ?
-                        user.resume ?
-                            <Link className="flex-shrink-0 rounded text-purple-800 px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/user-info/general'>
-                                Modify website
-                            </Link> :
-                            <Link className="flex-shrink-0 rounded text-purple-800 px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/user-info/general'>
-                                Create website
+                {!loading && (
+                    user ?
+                        <div className="flex justify-between min-w-56 text-lg font-medium gap-6">
+                            {user.websiteStatus === 'active' && < Link target="_blank" className="flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to={`/u/${user.username}`}>
+                                Go to website
                             </Link>
-                        :
-                        <Link className="rounded text-purple-800 px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-up'>
-                            Sign up
-                        </Link>
-                    }
-                    {
-                        user ?
-                            <button className="rounded text-rose-600 px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-rose-600" onClick={(e) => { handleSignOut(e) }}>
+                            }
+                            {
+                                user.admin?
+                            < Link className="flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/admin-dashboard'>
+                                Dashboard
+                            </Link>:
+                            < Link className="flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/dashboard/general'>
+                                Dashboard
+                            </Link>
+                            }
+                            <button className="rounded text-rose-600 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-rose-600" onClick={(e) => { handleSignOut(e) }}>
                                 Sign out
-                            </button> :
-                            <Link className="rounded text-purple-800 px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-in'>
+                            </button>
+                        </div >
+                        :
+                        <div className="flex justify-between min-w-56 text-lg font-medium gap-6">
+                            <Link className="rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-up'>
+                                Sign up
+                            </Link>
+                            <Link className="rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-in'>
                                 Sign in
                             </Link>
-                    }
-                </div>
+                            <Link className="rounded px-3 py-1 transition-all duration-200 text-white shadow hover:shadow-lg bg-gradient-to-tr from-purple-700 to-violet-500" to='/sign-up'>
+                                Get Started
+                            </Link>
+                        </div>
+                )
                 }
-            </header>
+            </header >
             <Outlet />
         </>
     )

@@ -74,7 +74,7 @@ export default function ThemeInfo() {
     };
 
     return (
-        <div className="p-4">
+        <div className="px-4">
             <h2 className="text-purple-700 text-3xl font-bold mb-4">Choose Your Theme Color</h2>
             <div className="grid grid-cols-4 gap-4 mb-8 grid-flow-row">
                 {colors.map((color) => (
@@ -96,7 +96,7 @@ export default function ThemeInfo() {
                         style={{ fontFamily: font }}
                         onClick={() => handleFontChange(font)}
                     >
-                        <span className="text-black font-medium">{font}</span>
+                        <span className="text-gray-600 font-medium">{font}</span>
                     </div>
                 ))}
             </div>

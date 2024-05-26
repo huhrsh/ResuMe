@@ -185,6 +185,15 @@ export default function CertificationInfo() {
                     </button>
                 </div>
             </form>
+            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 bg-purple-50">
+                <h3 className="text-2xl font-bold text-gray-600">Tips that might help you</h3>
+                <ul>
+                    <li className="list-disc ml-6 font-medium text-lg text-gray-700">Rest assured, if you've already uploaded an image and it displays as "No file chosen,"
+                        <li>
+                            it means only the files you select will appear, not the existing photos.</li>
+                    </li>
+                </ul>
+            </section>
         </section>
     );
 }

@@ -42,12 +42,19 @@ export default function SignUp() {
                 const user=await getDoc(doc(db,'users',userSignIn.user.uid))
                 if(user.exists()){
                     setUser({ uid: userSignIn.user.uid, ...user.data() })
+                    navigate('/dashboard/general')
+                }
+                else{
+                    const admin=await getDoc(doc(db,'admin',userSignIn.user.uid))   
+                    if(admin.exists()){
+                        setUser({ uid: userSignIn.user.uid, ...admin.data(), admin:true })
+                        navigate('/admin-dashboard')
+                    }
                 }
             }
             setEmail("")
             setPassword("")
             setLoading(false)
-            navigate('/')
         } catch (error) {
             // const errorCode = error.code;
             const errorMessage = error.message;
@@ -74,10 +81,9 @@ export default function SignUp() {
                         const userDoc = await setDoc(doc(db, 'users', user.uid), {
                             name: user.displayName,
                             email: user.email,
-                            authorized:false,
-                            websiteActive:false
+                            websiteStatus:"inactive"
                         })
-                        setUser({ uid: user.uid, name: user.displayName, email: user.email, authorized:false, websiteActive:false })
+                        setUser({ uid: user.uid, name: user.displayName, email: user.email, websiteStatus:"inactive" })
                         // if (userDoc) {
                         // toast.success("Account created.")
                         // navigate('/sign-in')
@@ -89,7 +95,7 @@ export default function SignUp() {
                 }
             }
             setLoading(false)
-            navigate('/')
+            navigate('/dashboard/general')
             // console.log(user);
             // const credential = GoogleAuthProvider.credentialFromResult(result);
             // const token = credential.accessToken;

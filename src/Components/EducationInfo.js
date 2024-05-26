@@ -174,7 +174,7 @@ export default function EducationInfo() {
                     <li className="list-disc ml-6 font-medium text-lg text-gray-700">Only fill in the details you want to showcase.</li>
                     <li className="list-disc ml-6 font-medium text-lg text-gray-700">You can leave any section empty if you do not wish to include it.</li>
                     <li className="list-disc ml-6 font-medium text-lg text-gray-700">Fields that will be showcased are colored purple.</li>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700">Fields that are not completely filled are colored red.</li>
+                    <li className="list-disc ml-6 font-medium text-lg text-gray-700">Fields that are not completely filled or not saved yet are colored red.</li>
                     <li className="list-disc ml-6 font-medium text-lg text-gray-700">Fields that will not be showcased are colored white.</li>
                 </ul>
             </section>
