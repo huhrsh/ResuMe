@@ -7,17 +7,25 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer{
+@layer {
+
   /* .sign-button{
     @apply  
   } */
-  .user-info-aside  *{
+  .user-info-aside * {
     @apply font-[raleway] text-lg font-medium py-1.5 px-3 rounded
   }
+  .education-div span{
+    @apply text-lg font-normal text-purple-400 drop-shadow-md
+  }
+  .education-div{
+    @apply text-lg font-semibold
+  }
 }
-.logo{  
+
+.logo {
   filter: invert(15%) sepia(88%) saturate(3183%) hue-rotate(259deg) brightness(88%) contrast(101%);
-} 
+}
 
 html {
   overflow-x: hidden;
@@ -36,13 +44,13 @@ html {
 ::-webkit-scrollbar-thumb {
   background: #0ea5e9;
   background: #075985;
-  background: #9ca3af; 
+  background: #9ca3af;
   /* border-radius: 3px; */
 }
 
 ::-webkit-scrollbar-thumb:hover {
   /* background: #1d4ed8;  */
-  background: #082f49; 
+  background: #082f49;
   background: #6b7280;
   cursor: pointer;
 }
@@ -57,7 +65,37 @@ input::file-selector-button {
   cursor: pointer;
   transition: all ease-in-out 0.2s;
 }
+
 input::file-selector-button:hover {
   background-color: #7e22ce;
   color: #fff;
 }
+
+.user-loading-text {
+  font-family:"outfit";
+  -webkit-text-stroke: 1.5px #fbbf24;
+  -webkit-text-fill-color: #00000044;
+}
+
+.user-border-text {
+  font-family:"outfit";
+  -webkit-text-stroke: 1px #fbbf24;
+  -webkit-text-fill-color: #00000044;
+}
+
+.user-name-text {
+  font-family:"outfit";
+  -webkit-text-stroke: 1.5px #fbbf24;
+  -webkit-text-fill-color: #00000099;
+}
+
+.know-more-text {
+  text-shadow: 0px 0px 10px #fbbe24b0;
+}
+
+/* .border-gradient {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 2%;
+  border-image: linear-gradient(to right, #a855f7, #fbbf24) 1;
+} */

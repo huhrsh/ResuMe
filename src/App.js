@@ -21,6 +21,8 @@ import SubmitInfo from "./Components/SubmitInfo";
 import AdminDashboard from "./Pages/AdminDashboard";
 import NoUser from "./Pages/NoUser";
 import UserHome from "./Pages/UserHome";
+import UserEducation from "./Pages/UserEducation";
+import UserProjects from "./Components/UserProjects";
 
 
 function App() {
@@ -53,7 +55,8 @@ function App() {
       element: <UserHeader />,
       children: [
         { index:true , element: <UserHome /> },
-        // { path: "education", element: <Education /> }
+        { path: "education", element: <UserEducation /> },
+        { path: "projects", element: <UserProjects /> },
       ]
     },
     { path: "/no-user", element: <NoUser /> },

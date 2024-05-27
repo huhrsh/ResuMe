@@ -33,7 +33,7 @@ export default function Header() {
                 {!loading && (
                     user ?
                         <div className="flex justify-between min-w-56 text-lg font-medium gap-6">
-                            {user.websiteStatus === 'active' && < Link target="_blank" className="flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to={`/u/${user.username}`}>
+                            {user.websiteStatus === 'active' && < Link target="_blank" className="flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to={`/${user.username}`}>
                                 Go to website
                             </Link>
                             }

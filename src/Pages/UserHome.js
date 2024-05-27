@@ -1,26 +1,31 @@
 import React, { useEffect, useRef } from 'react';
-import ReactFluidAnimation from '@usertive/react-fluid-animation';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
+
 
 export default function UserHome() {
-    const userDetails = useOutletContext()
-    console.log(userDetails)
+    const userDetails = useOutletContext();
     const animationRef = useRef(null);
 
     useEffect(() => {
-        let interval = setTimeout(() => {
-            if (animationRef.current) {
-                animationRef.current.addRandomSplats(30);
-            }
-        }, 10)
-        // return ()=>clearInterval(interval)
+        if (animationRef.current) {
+            animationRef.current.addRandomSplats(30);
+        }
     }, []);
 
     return (
-        <>
-            <div className="w-screen h-screen -z-0">
+        <div className="relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden" style={{
+            fontFamily: userDetails.selectedFont ? userDetails.selectedFont : "outfit",
+        }}>
+            <div className=' z-10 text-white max-w-screen-lg cursor-default flex flex-col gap-2'>
+                <h1 className='text-[7rem] user-loading-text leading-none'>
+                    {userDetails.name}
+                </h1>
+                <h2 className='text-2xl font-light '>{userDetails.profession}</h2>
+                <p className='text-lg text-gray-300'>{userDetails.about}</p>
+            </div>
+            {/* <div className="absolute inset-0 z-0">
                 <ReactFluidAnimation
-                    style={{ bg: "white", position: "absolute", top: 0, left: 0, zIndex: "-0" }}
+                    style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
                     config={{
                         textureDownsample: 1,
                         densityDissipation: 0.99,
@@ -30,7 +35,7 @@ export default function UserHome() {
                         curl: 0,
                         splatRadius: 0.01,
                         splatForce: 6000,
-                        colorsPool: [ // Add more colors here
+                        colorsPool: [
                             { r: 255, g: 0, b: 0 },    // Red
                             { r: 255, g: 165, b: 0 },  // Orange
                             { r: 255, g: 255, b: 0 },  // Yellow
@@ -43,8 +48,7 @@ export default function UserHome() {
                     }}
                     animationRef={ref => animationRef.current = ref}
                 />
-            </div>
-                <h1 className='text-white z-10 absolute top-[35%] left-[50%] -translate-x-[50%] -translate-y-[50%]' style={{fontFamily:userDetails.selectedFont?userDetails.selectedFont:"outfit", fontSize:userDetails.selectedSize?userDetails.selectedSize*4:24*4}} >{userDetails.name}</h1>
-        </>
+            </div> */}
+        </div>
     );
 }

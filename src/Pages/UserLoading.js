@@ -1,25 +1,28 @@
 import React from 'react';
 import bgImage from "../Assets/Images/pexels-tuesday-temptation-190692-3780104.jpg";
-import 'animate.css'; 
-import { Link } from 'react-router-dom';
+import 'animate.css'; // Ensure the animate.css library is imported
 
-export default function NoUser() {
+export default function UserLoading({ username }) {
+    // Split the username into two halves
+    const midpoint = Math.ceil(username.length / 2);
+    const firstHalf = username.substring(0, midpoint);
+    const secondHalf = username.substring(midpoint);
+
     return (
         <>
             <div className="absolute inset-0 bg-cover backdrop-blur-lg" style={{ backgroundImage: `url(${bgImage})` }}></div>
             <div className="backdrop-blur-3xl w-screen h-screen "></div>
             <div className='h-screen w-screen flex items-center justify-center absolute top-0'>
-                <div className='max-w-screen-lg flex items-start flex-col justify-center text-white gap-8 font-[Raleway'>
-                    <h1 className='text-8xl font-bold user-border-text'>
-                        No user found by this username
+                <div className='w-1/2 flex items-center justify-end'>
+                    <h1 className='animate__animated animate__fadeInLeft z-50 text-9xl font-semibold user-loading-text'>
+                        {firstHalf}
                     </h1>
-                    <span className='text-4xl user-border-text'>Visit <Link to='/'>ResuMe</Link> to get your own website.</span>
                 </div>
-                {/* <div className='w-1/2 flex items-center justify-start'>
+                <div className='w-1/2 flex items-center justify-start'>
                     <h1 className='animate__animated animate__fadeInRight z-50 text-9xl font-semibold user-loading-text'>
                         {secondHalf}
                     </h1>
-                </div> */}
+                </div>
             </div>
         </>
     );

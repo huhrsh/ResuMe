@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      transformOrigin: {
+        'top-left': 'top left',
+      },
+    },
   },
   plugins: [],
 }
