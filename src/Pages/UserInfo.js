@@ -49,21 +49,24 @@ export default function UserInfo() {
 
     return (
         <main className="w-screen p-12 flex font-[raleway] relative">
-            <aside className="user-info-aside flex flex-col w-60 gap-1 fixed top-[50%] -translate-y-[43%] justify-center " >
-                {navLinks.map(({ to, label }) => (
-                    <Link
-                        key={to}
-                        to={to}
-                        className={`w-60 relative overflow-hidden text-gray-600 hover:text-white transition-all duration-200 border
-                        before:content-[''] before:absolute 
-                        before:bg-gradient-to-tr before:from-purple-700 before:to-violet-500
-                        before:h-full before:w-0 before:transition-all before:duration-300 before:hover:w-full before:-z-10 before:top-0 before:left-0
-                        ${pathName === to && "ml-5 before:w-full text-white"}`}
-                    >
-                        {label}
-                    </Link>
-                ))}
-            </aside>
+            <div className="">
+                <aside className="user-info-aside z-0 flex flex-col w-0 gap-1 sticky top-40 left-0  justify-center " >
+                {/* <aside className="user-info-aside z-0 flex flex-col w-60 gap-1 fixed top-[50%] -translate-y-[43%] justify-center " > */}
+                    {navLinks.map(({ to, label }) => (
+                        <Link
+                            key={to}
+                            to={to}
+                            className={`w-60 relative overflow-hidden text-gray-600 hover:text-white transition-all duration-200 border
+                            before:content-[''] before:absolute 
+                            before:bg-gradient-to-tr before:from-purple-700 before:to-violet-500
+                            before:h-full before:w-0 before:transition-all before:duration-300 before:hover:w-full before:-z-10 before:top-0 before:left-0
+                            ${pathName === to && "ml-5 before:w-full text-white"}`}
+                        >
+                            {label}
+                        </Link>
+                    ))}
+                </aside>
+            </div>
             <section className="ml-[24%] w-[80%] h-auto scroll-auto">
                 <Outlet />
             </section>
