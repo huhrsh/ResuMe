@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useEffect } from "react";
 import { auth } from "../Firebase";
 import { signOut } from "firebase/auth";
+import Footer from "./Footer";
 
 export default function Header() {
     const navigate = useNavigate()
@@ -66,6 +67,7 @@ export default function Header() {
                 }
             </header >
             <Outlet />
+            <Footer/>
         </>
     )
 }

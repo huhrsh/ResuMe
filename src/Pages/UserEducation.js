@@ -8,7 +8,7 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 
 export default function UserEducation() {
-    const userDetails = useOutletContext();
+    const {userDetails} = useOutletContext();
     const educationDetails = userDetails?.education?.filter((edu) => edu.complete);
 
     const desiredOrder = ['Doctorate', 'Postgraduate', 'Undergraduate', '12th', '10th'];

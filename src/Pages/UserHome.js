@@ -3,7 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 
 
 export default function UserHome() {
-    const userDetails = useOutletContext();
+    const {userDetails} = useOutletContext();
     const animationRef = useRef(null);
 
     useEffect(() => {

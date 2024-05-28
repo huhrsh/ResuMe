@@ -79,8 +79,11 @@ export default function UserHeader() {
                     </div>
                 </header>
                 <div className="bg-cover h-screen w-screen fixed" style={{ backgroundImage: `url(${bgImage})` }}></div>
-                <main className="w-screen min-h-screen h-auto backdrop-blur-3xl">
-                    <Outlet context={userDetails} />
+                <main className="w-screen min-h-screen h-auto backdrop-blur-3xl relative">
+                    <Outlet context={{ userDetails, setLoading }} />
+                    <footer className="flex py-2 text-md font-medium justify-center items-center gap-2 font-[raleway] text-white absolute left-1/2 -translate-x-[50%] bottom-0">
+                        Made using <Link target="_blank" to='/' className="text-amber-400">ResuMe</Link>
+                    </footer>
                 </main>
             </>
     );

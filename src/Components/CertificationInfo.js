@@ -13,14 +13,20 @@ export default function CertificationInfo() {
             organizer: "",
             issueDate: "",
             validity: "",
-            image: null
+            link:"",
+            image: null,
+            imageUrl: ""
         }
     ]);
-    console.log(user)
 
     useEffect(() => {
-        setCertifications(user?.certifications ? user.certifications : certifications);
-    }, [user])
+        if (user?.certifications) {
+            setCertifications(user.certifications.map(cert => ({
+                ...cert,
+                image: null // Set image to null initially to handle new uploads
+            })));
+        }
+    }, [user]);
 
     const handleCertificationChange = (index, field, value) => {
         const newCertifications = [...certifications];
@@ -44,7 +50,9 @@ export default function CertificationInfo() {
                 organizer: "",
                 issueDate: "",
                 validity: "Lifetime",
-                image: null
+                link: "",
+                image: null,
+                imageUrl: ""
             }
         ]);
     };
@@ -72,13 +80,12 @@ export default function CertificationInfo() {
 
         for (let index = 0; index < certifications.length; index++) {
             let certification = certifications[index];
-            let imageUrl = "";
 
             if (certification.image) {
                 const storageRef = ref(storage, `certifications/${user.uid}/${certification.image.name}`);
                 const uploadTask = uploadBytesResumable(storageRef, certification.image);
 
-                imageUrl = await new Promise((resolve, reject) => {
+                await new Promise((resolve, reject) => {
                     uploadTask.on(
                         "state_changed",
                         (snapshot) => {
@@ -93,7 +100,7 @@ export default function CertificationInfo() {
                         },
                         async () => {
                             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                            updatedCertifications[index].image = downloadURL; // Store the image URL instead of the File object
+                            updatedCertifications[index].imageUrl = downloadURL; // Store the image URL instead of the File object
                             resolve(downloadURL);
                         }
                     );
@@ -105,8 +112,9 @@ export default function CertificationInfo() {
             title: cert.title,
             organizer: cert.organizer,
             issueDate: cert.issueDate,
+            link: cert.link,
             validity: cert.validity,
-            image: cert.image
+            imageUrl: cert.imageUrl || cert.image // Keep existing image URL if no new file is uploaded
         }));
 
         try {
@@ -136,20 +144,24 @@ export default function CertificationInfo() {
                                 </button>
                             )}
                         </div>
-                        <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
+                        <div className='border hover:shadow-lg focus-within:shadow-lg group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                             <h2 className=' text-purple-700 text-lg font-medium'>Title:</h2>
                             <input type="text" value={certification.title} placeholder="Certificate Title" onChange={(e) => handleCertificationChange(index, "title", e.target.value)} className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" required />
                         </div>
-                        <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
+                        <div className='border hover:shadow-lg focus-within:shadow-lg group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                             <h2 className=' text-purple-700 text-lg font-medium'>Organizer:</h2>
                             <input type="text" value={certification.organizer} placeholder="Certification Organizer" onChange={(e) => handleCertificationChange(index, "organizer", e.target.value)} className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" required />
                         </div>
+                        <div className='border hover:shadow-lg focus-within:shadow-lg group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
+                            <h2 className=' text-purple-700 text-lg font-medium'>Link:</h2>
+                            <input type="text" value={certification.link} placeholder="Certificate link" onChange={(e) => handleCertificationChange(index, "link", e.target.value)} className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" required />
+                        </div>
                         <div className="flex gap-6">
-                            <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
+                            <div className='border hover:shadow-lg focus-within:shadow-lg group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                                 <h2 className=' text-purple-700 text-lg font-medium flex-shrink-0'>Date of Issue:</h2>
                                 <input type="date" value={certification.issueDate} onChange={(e) => handleCertificationChange(index, "issueDate", e.target.value)} className="outline-none w-full h-full px-2 py-3 font-medium text-gray-600" />
                             </div>
-                            <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
+                            <div className='border hover:shadow-lg focus-within:shadow-lg group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                                 <h2 className=' text-purple-700 text-lg font-medium flex-shrink-0'>Valid till:</h2>
                                 {certification.validity !== "Lifetime" && (
                                     <input
@@ -170,9 +182,9 @@ export default function CertificationInfo() {
                                 <span className="text-lg font-medium text-gray-600">Lifetime</span>
                             </div>
                         </div>
-                        <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
+                        <div className='border hover:shadow-lg focus-within:shadow-lg group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                             <h2 className=' text-purple-700 text-lg font-medium'>Image:</h2>
-                            <input type="file" accept="image/*" required onChange={(e) => handleImageChange(index, e)} className="outline-none w-full h-full px-2 py-2 font-medium text-gray-600" />
+                            <input type="file" accept="image/*" onChange={(e) => handleImageChange(index, e)} className="outline-none w-full h-full px-2 py-2 font-medium text-gray-600" />
                         </div>
                     </div>
                 ))}

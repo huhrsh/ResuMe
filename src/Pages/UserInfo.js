@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../Context";
 import { label } from "three/examples/jsm/nodes/Nodes.js";
+import Footer from "../Components/Footer";
 
 export default function UserInfo() {
     const navigate = useNavigate()
@@ -15,18 +16,6 @@ export default function UserInfo() {
 
     const [pathName, setPathName] = useState(getEndUrlPart());
 
-    useEffect(() => {
-        if (!loading) {
-            if( !user){
-                navigate('/');
-            }
-        }
-    }, [user, loading]);
-
-    useEffect(() => {
-        setPathName(getEndUrlPart())
-    }, [location.pathname]);
-
     const navLinks = [
         { to: "general", label: "General" },
         { to: "about", label: "About" },
@@ -37,10 +26,26 @@ export default function UserInfo() {
         { to: "skills", label: "Skills" },
         { to: "contacts", label: "Contacts" },
         { to: "themes", label: "Themes" },
-        {to: "submit", label:"Submit for approval"}
-        // { to: "colors", label: "Colors" },
-        // { to: "fonts", label: "Fonts" }
+        // {to: "submit", label:"Submit for approval"}
     ];
+
+    useEffect(() => {
+        if (!loading) {
+            if( !user){
+                navigate('/');
+            }
+            else{
+                if(user.websiteStatus!=='active'){
+                    navLinks.push({to: "submit", label:"Submit for approval"})
+                }
+            }
+        }
+    }, [user, loading]);
+
+    useEffect(() => {
+        setPathName(getEndUrlPart())
+    }, [location.pathname]);
+
 
     return (
         <main className="w-screen p-12 flex font-[raleway] relative">
@@ -63,5 +68,6 @@ export default function UserInfo() {
                 <Outlet />
             </section>
         </main>
+
     )
 }

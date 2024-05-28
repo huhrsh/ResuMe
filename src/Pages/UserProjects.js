@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import defaultImage from "../Assets/Images/6974855_4380.jpg";
-import link from "../Assets/Images/link.png"
+import link from "../Assets/Images/link.png";
 
 export default function UserProjects() {
-    const userDetails = useOutletContext();
+    const { userDetails } = useOutletContext();
     const projects = userDetails.projects;
 
     const [selectedProject, setSelectedProject] = useState(null);
@@ -14,17 +14,11 @@ export default function UserProjects() {
         setSelectedProject(project);
         setTimeout(() => {
             projectDetailsRef.current.scrollIntoView({ behavior: "smooth" });
-        }, 100);  // slight delay to ensure state updates before scrolling
+        }, 100);  
     };
 
-    useEffect(() => {
-        if (selectedProject) {
-            projectDetailsRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [selectedProject]);
-
     return (
-        <div className="py-32 px-20" style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}>
+        <div className="py-32 pb-12 px-20" style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 {projects.map((project, index) => (
                     <div
@@ -37,7 +31,7 @@ export default function UserProjects() {
                             <img
                                 src={project.image || defaultImage}
                                 alt={project.projectTitle}
-                                className="w-full aspect-video object-cover rounded-lg transition-transform duration-150 ease-linear origin-top-left group-hover:rotate-12 group-hover:translate-y-0 group-hover:-translate-x-8"
+                                className="bg-black w-full aspect-video object-cover rounded-lg transition-transform duration-150 ease-linear origin-top-left group-hover:rotate-12 group-hover:translate-y-0 group-hover:-translate-x-8"
                             />
                         </div>
                         <h2 className="mt-8 mb-2 text-5xl font-bold user-loading-text">{project.projectTitle}</h2>
@@ -48,7 +42,6 @@ export default function UserProjects() {
 
             {selectedProject && (
                 <div ref={projectDetailsRef} className="mt-12 p-6 text-white rounded-lg flex flex-col gap-2">
-                    {/* <Link ref='noopener noreferrer' to={selectedProject.githubLink} className="">{selectedProject.projectTitle}</Link> */}
                     <h2 className="text-5xl user-loading-text font-bold ">{selectedProject.projectTitle}</h2>
                     <p className="text-lg"> {selectedProject.tagline}</p>
                     <div className="flex flex-col mt-8 gap-2">
@@ -79,7 +72,9 @@ export default function UserProjects() {
                             ))}
                         </ul>
                     </div>
-                    <a href={`https://`+selectedProject.githubLink} target="_blank" rel="noopener noreferrer" className="user-border-text text-4xl font-bold flex gap-2 items-center ">Github <img className="h-5" src={link} alt="link"/></a>
+                    <a href={`https://${selectedProject.githubLink}`} target="_blank" rel="noopener noreferrer" className="user-border-text text-4xl font-bold flex gap-2 items-center">
+                        Github <img className="h-5" src={link} alt="link"/>
+                    </a>
                 </div>
             )}
         </div>

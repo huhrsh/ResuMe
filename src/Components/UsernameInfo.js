@@ -18,11 +18,18 @@ export default function UsernameInfo() {
         contacts: true
     });
 
+    const desiredOrder = ['education', 'projects', 'experience', 'certifications', 'skills', 'contacts'];
+
     useEffect(() => {
         if (user) {
-            // console.log(user)
             setUsername(user.username ? user.username : "")
-            setSelectedSections(user.selectedSections?user.selectedSections:selectedSections)
+            const sortedSections = Object.fromEntries(
+                Object.entries(user.selectedSections || selectedSections).sort(
+                    ([sectionA], [sectionB]) => desiredOrder.indexOf(sectionA) - desiredOrder.indexOf(sectionB)
+                )
+            );
+            setSelectedSections(sortedSections);
+            // setSelectedSections(user.selectedSections ? user.selectedSections : selectedSections)
         }
     }, [user])
 
@@ -43,7 +50,7 @@ export default function UsernameInfo() {
         }
         console.log(user.selectedSections)
         console.log(selectedSections)
-        if (username === user.username && selectedSections===user.selectedSections ) {
+        if (username === user.username && selectedSections === user.selectedSections) {
             toast.warn("No change detected.")
             return;
         }
@@ -58,14 +65,20 @@ export default function UsernameInfo() {
 
                 if (querySnapshot.empty) {
                     await updateDoc(doc(db, 'users', user.uid), {
-                        username:username,
-                        selectedSections:selectedSections
+                        username: username,
+                        selectedSections: selectedSections
                     });
-                    setUser({...user, username, selectedSections})
+                    setUser({ ...user, username, selectedSections })
                     console.log("User updated");
-                    toast.success("Username changed.")
-                    // setUsername("");
-                    // Optionally, you can set some state or perform other actions here
+                    toast.success("General section updated.")
+                } else if (username === user.username) {
+                    await updateDoc(doc(db, 'users', user.uid), {
+                        // username: username,
+                        selectedSections: selectedSections
+                    });
+                    setUser({ ...user, username, selectedSections })
+                    // console.log("User updated");
+                    toast.success("General section updated.")
                 } else {
                     toast.warn("Username already taken.");
                 }

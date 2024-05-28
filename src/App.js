@@ -22,7 +22,11 @@ import AdminDashboard from "./Pages/AdminDashboard";
 import NoUser from "./Pages/NoUser";
 import UserHome from "./Pages/UserHome";
 import UserEducation from "./Pages/UserEducation";
-import UserProjects from "./Components/UserProjects";
+import UserProjects from "./Pages/UserProjects";
+import UserCertifications from "./Pages/UserCertifications";
+import UserSkills from "./Pages/UserSkills";
+import UserContacts from "./Pages/UserContacts";
+import UserExperience from "./Pages/UserExperience";
 
 
 function App() {
@@ -57,6 +61,10 @@ function App() {
         { index:true , element: <UserHome /> },
         { path: "education", element: <UserEducation /> },
         { path: "projects", element: <UserProjects /> },
+        { path: "experience", element: <UserExperience /> },
+        { path: "certifications", element: <UserCertifications /> },
+        { path: "skills", element: <UserSkills /> },
+        { path: "contacts", element: <UserContacts /> },
       ]
     },
     { path: "/no-user", element: <NoUser /> },

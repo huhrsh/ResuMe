@@ -7,7 +7,7 @@ import deleteImage from "../Assets/Images/cross-circle.png"
 // import deleteImage from "../Assets/Images/trash (2).png"
 
 export default function ExperienceInfo() {
-    const { user, setUser,  setLoading } = useUser();
+    const { user, setUser, setLoading } = useUser();
     const [experiences, setExperiences] = useState([
         {
             role: "",
@@ -25,7 +25,7 @@ export default function ExperienceInfo() {
         }
     }, [user]);
 
-    
+
     const handleExperienceChange = (index, event) => {
         const { name, value, type, checked } = event.target;
         const updatedExperiences = [...experiences];
@@ -75,7 +75,7 @@ export default function ExperienceInfo() {
         setLoading(true);
         try {
             await updateDoc(doc(db, 'users', user.uid), { experiences });
-            setUser({...user, experiences})
+            setUser({ ...user, experiences })
             toast.success("Experience section updated.");
         } catch (err) {
             console.log(err);
@@ -95,23 +95,27 @@ export default function ExperienceInfo() {
                     <div className="flex flex-col gap-4 mt-2">
                         <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                             <h2 className=' text-purple-700 text-lg font-medium'>Role:</h2>
-                            <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="role" placeholder="Role" value={exp.role} onChange={(e) => handleExperienceChange(index, e)}/>
+                            <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="role" placeholder="Role" value={exp.role} onChange={(e) => handleExperienceChange(index, e)} />
                         </div>
                         <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                             <h2 className=' text-purple-700 text-lg font-medium'>Company:</h2>
-                            <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="company" placeholder="Company" value={exp.company} onChange={(e) => handleExperienceChange(index, e)}/>
+                            <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="company" placeholder="Company" value={exp.company} onChange={(e) => handleExperienceChange(index, e)} />
                         </div>
                         <div className="flex gap-4">
                             <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-1/2 gap-3 items-center'>
                                 <h2 className=' flex-shrink-0 text-purple-700 text-lg font-medium'>Start Date:</h2>
-                                <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="start" placeholder="Start Date" value={exp.start} onChange={(e) => handleExperienceChange(index, e)}/>
+                                <input className="outline-none w-full h-full px-2 py-3 font-medium text-gray-600" type="date" name="start" placeholder="Start Date" value={exp.start} onChange={(e) => handleExperienceChange(index, e)} />
                             </div>
                             <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-1/2 gap-3 items-center'>
-                                <h2 className=' flex-shrink-0 text-purple-700 text-lg font-medium'>Start Date:</h2>
-                                <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="end" placeholder="End Date" value={exp.current ? "Present" : exp.end} onChange={(e) => handleExperienceChange(index, e)} disabled={exp.current}/>
+                                <h2 className=' flex-shrink-0 text-purple-700 text-lg font-medium'>End Date:</h2>
+                                {!exp.current ?
+                                    <input className="outline-none w-full h-full px-2 py-3 font-medium text-gray-600" type="date" name="end" placeholder="End Date" value={exp.current ? "" : exp.end} onChange={(e) => handleExperienceChange(index, e)} disabled={exp.current} />
+                                    :
+                                    <span className="w-full"></span>
+                                }
                                 <label className="flex items-center">
-                                    <input className="mr-2" type="checkbox" name="current" checked={exp.current} onChange={(e) => handleExperienceChange(index, e)}/>
-                                    Current
+                                    <input className="mr-2" type="checkbox" name="current" checked={exp.current} onChange={(e) => handleExperienceChange(index, e)} />
+                                    Present
                                 </label>
                             </div>
                         </div>
