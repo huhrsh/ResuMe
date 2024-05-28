@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import defaultImage from "../Assets/Images/6974855_4380.jpg";
+import link from "../Assets/Images/link.png"
 
 export default function UserProjects() {
     const userDetails = useOutletContext();
@@ -39,42 +40,46 @@ export default function UserProjects() {
                                 className="w-full aspect-video object-cover rounded-lg transition-transform duration-150 ease-linear origin-top-left group-hover:rotate-12 group-hover:translate-y-0 group-hover:-translate-x-8"
                             />
                         </div>
-                        <h2 className="mt-4 mb-2 text-5xl font-bold user-loading-text">{project.projectTitle}</h2>
+                        <h2 className="mt-8 mb-2 text-5xl font-bold user-loading-text">{project.projectTitle}</h2>
                         <p className="text-gray-200">{project.tagline}</p>
                     </div>
                 ))}
             </div>
 
             {selectedProject && (
-                <div ref={projectDetailsRef} className="mt-12 p-6 bg-gray-800 text-white rounded-lg">
-                    <h2 className="text-3xl font-bold mb-4">{selectedProject.projectTitle}</h2>
-                    <p className="mb-2">{selectedProject.overview}</p>
-                    <p className="mb-2"><strong>Tagline:</strong> {selectedProject.tagline}</p>
-                    <div className="mb-2">
-                        <strong>Technologies:</strong>
-                        <ul className="list-disc list-inside">
+                <div ref={projectDetailsRef} className="mt-12 p-6 text-white rounded-lg flex flex-col gap-2">
+                    {/* <Link ref='noopener noreferrer' to={selectedProject.githubLink} className="">{selectedProject.projectTitle}</Link> */}
+                    <h2 className="text-5xl user-loading-text font-bold ">{selectedProject.projectTitle}</h2>
+                    <p className="text-lg"> {selectedProject.tagline}</p>
+                    <div className="flex flex-col mt-8 gap-2">
+                        <h3 className="user-border-text text-4xl font-bold">Overview</h3>
+                        <p className="text-lg text-gray-100">{selectedProject.overview}</p>
+                    </div>
+                    <div className="flex flex-col mt-8">
+                        <h3 className="user-border-text text-4xl font-bold">Technologies/ Libraries used:</h3>
+                        <ul className="list-disc list-inside pl-4 text-lg">
                             {selectedProject.technologies.map((tech, index) => (
-                                <li key={index}>{tech}</li>
+                                <li className="py-1.5 text-gray-100" key={index}>{tech}</li>
                             ))}
                         </ul>
                     </div>
-                    <div className="mb-2">
-                        <strong>Challenges:</strong>
-                        <ul className="list-disc list-inside">
+                    <div className="flex flex-col mt-8">
+                        <h3 className="user-border-text text-4xl font-bold">Challenges faced:</h3>
+                        <ul className="list-disc list-inside pl-4 text-lg">
                             {selectedProject.challenges.map((challenge, index) => (
-                                <li key={index}>{challenge}</li>
+                                <li className="py-1.5 text-gray-100" key={index}>{challenge}</li>
                             ))}
                         </ul>
                     </div>
-                    <div className="mb-2">
-                        <strong>Lessons:</strong>
-                        <ul className="list-disc list-inside">
+                    <div className="">
+                        <h3 className="user-border-text text-4xl font-bold">Lessons learnt:</h3>
+                        <ul className="list-disc list-inside pl-4 text-lg">
                             {selectedProject.lessons.map((lesson, index) => (
-                                <li key={index}>{lesson}</li>
+                                <li className="py-1.5 text-gray-100" key={index}>{lesson}</li>
                             ))}
                         </ul>
                     </div>
-                    <a href={selectedProject.githubLink} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">GitHub Link</a>
+                    <a href={`https://`+selectedProject.githubLink} target="_blank" rel="noopener noreferrer" className="user-border-text text-4xl font-bold flex gap-2 items-center ">Github <img className="h-5" src={link} alt="link"/></a>
                 </div>
             )}
         </div>
