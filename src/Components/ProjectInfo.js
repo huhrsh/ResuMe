@@ -169,7 +169,7 @@ export default function ProjectInfo() {
                             />
                         </div>
                         <div className='border hover:shadow-lg focus-within:shadow-lg group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
-                            <h2 className=' text-purple-700 text-lg flex-shrink-0 font-medium'>Github Link:</h2>
+                            <h2 className=' text-purple-700 text-lg flex-shrink-0 font-medium'>Project Link:</h2>
                             <input
                                 type="text"
                                 value={project.githubLink}

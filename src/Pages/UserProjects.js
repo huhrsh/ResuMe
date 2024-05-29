@@ -73,7 +73,7 @@ export default function UserProjects() {
                         </ul>
                     </div>
                     <a href={`https://${selectedProject.githubLink}`} target="_blank" rel="noopener noreferrer" className="user-border-text text-4xl font-bold flex gap-2 items-center">
-                        Github <img className="h-5" src={link} alt="link"/>
+                        Project Link <img className="h-5" src={link} alt="link"/>
                     </a>
                 </div>
             )}
