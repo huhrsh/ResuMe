@@ -3,12 +3,16 @@ import profile from "../Assets/Images/abstract.png"
 import Loading from "../Pages/Loading";
 import { useUser } from "../Context";
 import { ToastContainer, toast } from "react-toastify";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import downArrow from "../Assets/Images/angle-down.png"
 import { auth } from "../Firebase";
 import { signOut } from "firebase/auth";
 import Footer from "./Footer";
 
 export default function Header() {
+    const [dropdown, setDropdown] = useState(false);
+    const [dropdown1, setDropdown1] = useState(false);
+
     const navigate = useNavigate()
     const handleSignOut = async (e) => {
         e.preventDefault();
@@ -26,48 +30,102 @@ export default function Header() {
         <>
             <ToastContainer autoClose={3000} position="top-center" />
             {loading && <Loading />}
-            <header className="shadow sticky top-0 left-0 bg-white z-50 shadow-purple-100 font-[raleway] px-12 py-4 flex justify-between items-center antialiased">
+            <header className="shadow sticky top-0 left-0 bg-white z-50 shadow-purple-100 font-[raleway] px-12 py-4 flex justify-between items-center antialiased
+            max-sm:px-4
+            ">
                 <Link to='/' className="text-3xl bg-gradient-to-bl from-violet-600 to-purple-800 text-transparent bg-clip-text flex items-center gap-1 font-medium">
                     <img src={profile} alt="logo" className="h-8 logo" />
                     ResuMe
                 </Link>
                 {!loading && (
                     user ?
-                        <div className="flex justify-between min-w-56 text-lg font-medium gap-6">
-                            {user.websiteStatus === 'active' && < Link target="_blank" className="flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to={`/${user.username}`}>
-                                Go to website
-                            </Link>
-                            }
-                            {
-                                user.admin?
-                            < Link className="flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/admin-dashboard'>
-                                Dashboard
-                            </Link>:
-                            < Link className="flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/dashboard/general'>
-                                Dashboard
-                            </Link>
-                            }
-                            <button className="rounded text-rose-600 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-rose-600" onClick={(e) => { handleSignOut(e) }}>
-                                Sign out
-                            </button>
-                        </div >
+                        <>
+                            <div className="w-1/2 flex flex-col relative items-end">
+                                <button className="overflow-hidden border px-3 py-1 rounded flex-shrink-0 font-medium text-purple-700 w-fit text-lg flex items-center justify-end pr-2 gap-2 sm:hidden" onClick={() => { setDropdown(!dropdown) }}>{user.name}
+                                    {
+                                        dropdown ?
+                                            <img src={downArrow} className="transition-all duration-200 h-3 rotate-180" alt="down" />
+                                            : <img src={downArrow} className="transition-all duration-200 h-3" alt="down" />
+                                    }
+                                </button>
+                                {dropdown && <div className="flex sm:hidden flex-col top-12 justify-between absolute items-end text-lg font-medium gap-2">
+                                    {user.websiteStatus === 'active' && < Link target="_blank" className="flex-shrink-0 border bg-white rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to={`/${user.username}`}>
+                                        Go to website
+                                    </Link>
+                                    }
+                                    {
+                                        user.admin ?
+                                            < Link className="border bg-white flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/admin-dashboard'>
+                                                Dashboard
+                                            </Link> :
+                                            < Link className="border bg-white flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/dashboard/general'>
+                                                Dashboard
+                                            </Link>
+                                    }
+                                    <button className="border bg-white rounded text-rose-600 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-rose-600" onClick={(e) => { handleSignOut(e) }}>
+                                        Sign out
+                                    </button>
+                                </div >}
+                            </div>
+                            <div className="flex max-sm:hidden justify-between min-w-56 text-lg font-medium gap-6">
+                                {user.websiteStatus === 'active' && < Link target="_blank" className="flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to={`/${user.username}`}>
+                                    Go to website
+                                </Link>
+                                }
+                                {
+                                    user.admin ?
+                                        < Link className="flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/admin-dashboard'>
+                                            Dashboard
+                                        </Link> :
+                                        < Link className="flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/dashboard/general'>
+                                            Dashboard
+                                        </Link>
+                                }
+                                <button className="rounded text-rose-600 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-rose-600" onClick={(e) => { handleSignOut(e) }}>
+                                    Sign out
+                                </button>
+                            </div >
+                        </>
                         :
-                        <div className="flex justify-between min-w-56 text-lg font-medium gap-6">
-                            <Link className="rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-up'>
-                                Sign up
-                            </Link>
-                            <Link className="rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-in'>
-                                Sign in
-                            </Link>
-                            <Link className="rounded px-3 py-1 transition-all duration-200 text-white shadow hover:shadow-lg bg-gradient-to-tr from-purple-700 to-violet-500" to='/sign-up'>
-                                Get Started
-                            </Link>
-                        </div>
+                        <>
+                            <div className="relative">
+                                <button className=" sm:hidden rounded px-3 py-1 transition-all duration-200 text-white shadow hover:shadow-lg bg-gradient-to-tr from-purple-700 to-violet-500" onClick={() => { setDropdown1(!dropdown1) }}>Get Started
+                                    {
+                                        dropdown1 ?
+                                            <img src={downArrow} className="transition-all duration-200 h-3 rotate-180" alt="down" />
+                                            : <img src={downArrow} className="transition-all duration-200 h-3" alt="down" />
+                                    }
+                                </button>
+                                {
+                                    dropdown1 &&
+                                    <div className="flex justify-between max-sm:justify-end sm:hidden min-w-56 text-lg font-medium gap-6 ">
+                                        <Link className="max-sm:hidden rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-up'>
+                                            Sign up
+                                        </Link>
+                                        <Link className="max-sm:hidden rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-in'>
+                                            Sign in
+                                        </Link>
+                                    </div>
+                                }
+                            </div>
+                            <div className="flex justify-between max-sm:hidden min-w-56 text-lg font-medium gap-6 ">
+                                <Link className="max-sm:hidden rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-up'>
+                                    Sign up
+                                </Link>
+                                <Link className="max-sm:hidden rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-in'>
+                                    Sign in
+                                </Link>
+                                <Link className="rounded px-3 py-1 transition-all duration-200 text-white shadow hover:shadow-lg bg-gradient-to-tr from-purple-700 to-violet-500" to='/sign-up'>
+                                    Get Started
+                                </Link>
+                            </div>
+                        </>
+
                 )
                 }
             </header >
             <Outlet />
-            <Footer/>
+            <Footer />
         </>
     )
 }

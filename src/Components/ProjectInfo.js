@@ -132,7 +132,7 @@ export default function ProjectInfo() {
 
     return (
         <section className="font-[raleway] flex flex-col gap-4">
-            <h2 className="text-purple-700 text-3xl font-bold">Lets flaunt your projects</h2>
+            <h2 className="text-purple-700 text-3xl font-bold max-sm:text-2xl">Lets flaunt your projects</h2>
             <form className="flex flex-col gap-4" onSubmit={handleFormSubmit}>
                 {projects.map((project, projectIndex) => (
                     <div key={projectIndex} className="flex flex-col gap-4 border p-4 rounded shadow">
@@ -179,29 +179,29 @@ export default function ProjectInfo() {
                                 required
                             />
                         </div>
-                        <div className=' group p-3 py-0 rounded-xl transition-all duration-200 flex flex-col w-full gap-1 items-start'>
+                        <div className=' group p-3 py-0 max-sm:p-0 rounded-xl transition-all duration-200 flex flex-col w-full gap-1 items-start'>
                             <h2 className=' text-purple-700  text-lg font-medium'>Overview:</h2>
                             <textarea
                                 placeholder="The Bliss India website was created with the primary objective of fostering company growth by drawing in consumers from across the country. It seamlessly combines a clean user interface with a smooth and intuitive user experience. The website encompasses all essential features for customers, including item search, product sorting, cart and wishlist functionality, as well as the provision of a receipt copy. "
                                 value={project.overview}
                                 onChange={(e) => handleProjectChange(projectIndex, "overview", e.target.value)}
-                                className="outline-none w-full h-auto p-3 px-4 font-medium text-gray-600 hover:shadow-lg focus-within:shadow-lg border transition-all duration-200 rounded-xl min-h-32"
+                                className="outline-none w-full max-sm:text-base h-auto p-3 px-4 font-medium text-gray-600 hover:shadow-lg focus-within:shadow-lg border transition-all duration-200 rounded-xl min-h-32 max-sm:min-h-60"
                                 required
                             />
                         </div>
-                        <div className='border hover:shadow-lg focus-within:shadow-lg group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
+                        <div className='border hover:shadow-lg focus-within:shadow-lg max-sm:py-1 group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                             <h2 className=' text-purple-700 text-lg flex-shrink-0 font-medium'>Display Image (optional):</h2>
                             <input
                                 type="file"
                                 accept="image/*"
                                 onChange={(e) => handleImageChange(projectIndex, e)}
-                                className="outline-none w-full h-full px-2 py-2 font-medium text-gray-600"
+                                className="outline-none w-full h-full px-2 py-2  font-medium text-gray-600"
                             />
                         </div>
                         <div className="flex flex-col gap-2 mt-4">
                             <label className="text-purple-700 text-lg font-medium">Technologies/Libraries Used:</label>
                             {project.technologies?.map((tech, techIndex) => (
-                                <div key={techIndex} className="group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center">
+                                <div key={techIndex} className="group p-3 max-sm:p-0 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center">
                                     <input
                                         type="text"
                                         value={tech}
@@ -216,7 +216,7 @@ export default function ProjectInfo() {
                             <button
                                 type="button"
                                 onClick={() => addPoint(projectIndex, "technologies")}
-                                className="text-lg font-medium ml-3 border rounded text-purple-800 px-3 py-1.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700 w-fit"
+                                className="text-lg font-medium ml-3 max-sm:m-0 border rounded text-purple-800 px-3 py-1.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700 w-fit"
                             >
                                 Add technology
                             </button>
@@ -224,7 +224,7 @@ export default function ProjectInfo() {
                         <div className="flex flex-col gap-2 mt-4">
                             <label className="text-purple-700 text-lg font-medium">Challenges Faced:</label>
                             {project.challenges?.map((challenge, challengeIndex) => (
-                                <div key={challengeIndex} className="group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center">
+                                <div key={challengeIndex} className="group p-3 py-0 max-sm:p-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center">
                                     <input
                                         type="text"
                                         value={challenge}
@@ -239,7 +239,7 @@ export default function ProjectInfo() {
                             <button
                                 type="button"
                                 onClick={() => addPoint(projectIndex, "challenges")}
-                                className="text-lg font-medium ml-3 border rounded text-purple-800 px-3 py-1.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700 w-fit"
+                                className="text-lg font-medium ml-3 max-sm:m-0 border rounded text-purple-800 px-3 py-1.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700 w-fit"
                             >
                                 Add challenge
                             </button>
@@ -247,7 +247,7 @@ export default function ProjectInfo() {
                         <div className="flex flex-col gap-2 mt-4">
                             <label className="text-lg font-medium text-purple-700">What Did You Learn:</label>
                             {project.lessons?.map((lesson, lessonIndex) => (
-                                <div key={lessonIndex} className="group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center">
+                                <div key={lessonIndex} className="group p-3 py-0 max-sm:p-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center">
                                     <input
                                         type="text"
                                         placeholder={`point ${lessonIndex + 1}`}
@@ -262,7 +262,7 @@ export default function ProjectInfo() {
                             <button
                                 type="button"
                                 onClick={() => addPoint(projectIndex, "lessons")}
-                                className="text-lg font-medium ml-3 border rounded text-purple-800 px-3 py-1.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700 w-fit"
+                                className="text-lg font-medium ml-3 max-sm:m-0 border rounded text-purple-800 px-3 py-1.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700 w-fit"
                             >
                                 Add Lesson
                             </button>

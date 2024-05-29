@@ -54,35 +54,35 @@ export default function AboutInfo() {
 
     return (
         <section className="font-[raleway] flex flex-col gap-6">
-            <form className="flex flex-col pr-12 gap-4 items-start">
+            <form className="flex flex-col pr-12 gap-4 items-start max-sm:pr-0">
                 <div className="w-full flex flex-col gap-3 mb-4">
-                    <h2 className=' text-purple-700 text-3xl font-bold'>What should we call you?</h2>
+                    <h2 className=' text-purple-700 text-3xl font-bold max-sm:text-2xl'>What should we call you?</h2>
                     <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                         <h2 className=' text-purple-700 text-lg font-medium'>Name:</h2>
                         <input ref={nameInputRef} className='outline-none w-full h-full px-2 py-4 font-medium text-gray-600' type='text' placeholder='Web Developer' onChange={((e) => setName(e.target.value))} value={name} />
                     </div>
                 </div>
                 <div className="w-full flex flex-col gap-3 mb-4">
-                    <h2 className=' text-purple-700 text-3xl font-bold'>What is your profession?</h2>
+                    <h2 className=' text-purple-700 text-3xl font-bold max-sm:text-2xl'>What is your profession?</h2>
                     <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                         <h2 className=' text-purple-700 text-lg font-medium'>Profession:</h2>
                         <input ref={professionInputRef} className='outline-none w-full h-full px-2 py-4 font-medium text-gray-600' type='text' placeholder='Web Developer' onChange={((e) => setProfession(e.target.value))} value={profession} />
                     </div>
                 </div>
                 <div className="w-full flex flex-col gap-3">
-                    <h2 className=' text-purple-700 text-3xl font-bold'>Write something about yourself</h2>
+                    <h2 className=' text-purple-700 text-3xl font-bold max-sm:text-2xl'>Write something about yourself</h2>
                     <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
-                        <textarea ref={aboutInputRef} onChange={(e) => { setAboutText(e.target.value) }} value={aboutText} className="outline-none w-full h-full p-2 font-medium text-lg text-gray-600 max-h-52 min-h-40" placeholder="Passionate third-year Computer Science and Engineering student excelling in web development, adept at breaking down complex challenges into creative and high-quality solutions, driven by a commitment to continuous learning and a strong problem-solving mindset."></textarea>
+                        <textarea ref={aboutInputRef} onChange={(e) => { setAboutText(e.target.value) }} value={aboutText} className="outline-none w-full h-full p-2 font-medium text-lg max-sm:text-base text-gray-600 sm:max-h-52 min-h-40 max-sm:min-h-72 max-sm:h-auto" placeholder="Passionate third-year Computer Science and Engineering student excelling in web development, adept at breaking down complex challenges into creative and high-quality solutions, driven by a commitment to continuous learning and a strong problem-solving mindset."></textarea>
                     </div>
                 </div>
                 <button className="flex-shrink-0 bg-gradient-to-bl hover:shadow-lg hover:shadow-gray-300 duration-200 from-violet-500 to-purple-700 transition-all w-fit  px-3 py-2 text-lg font-medium rounded text-white " onClick={(e) => { handleAboutChange(e) }}>Save Changes</button>
             </form>
-            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 bg-purple-50">
-                <h3 className="text-2xl font-bold text-gray-600">Tips to enhance your "About Me" section</h3>
+            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 max-sm:mr-0 bg-purple-50">
+                <h3 className="text-2xl max-sm:text-xl max-sm:mb-4 font-bold text-gray-600">Tips to enhance your "About Me" section</h3>
                 <ul>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700" >Highlight your unique skills and achievements.</li>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700" >Maintain a positive and professional tone throughout.</li>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700" >Keep it concise and relevant to your audience.</li>
+                    <li className="list-disc ml-6 font-medium text-lg max-sm:text-base max-sm:ml-3 text-gray-700" >Highlight your unique skills and achievements.</li>
+                    <li className="list-disc ml-6 font-medium text-lg max-sm:text-base max-sm:ml-3 text-gray-700" >Maintain a positive and professional tone throughout.</li>
+                    <li className="list-disc ml-6 font-medium text-lg max-sm:text-base max-sm:ml-3 text-gray-700" >Keep it concise and relevant to your audience.</li>
                 </ul>
             </section>
         </section>

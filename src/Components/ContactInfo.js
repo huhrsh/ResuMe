@@ -13,7 +13,6 @@ export default function ContactInfo() {
         if (user && user.contacts) {
             setContacts(user.contacts);
         } else {
-            // Set default contacts if user data doesn't exist
             setContacts([
                 { label: "Phone", value: "" },
                 { label: "Email", value: "" }
@@ -54,7 +53,7 @@ export default function ContactInfo() {
 
     return (
         <section className="font-[raleway] flex flex-col gap-4">
-            <h2 className="text-purple-700 text-3xl font-bold">How do we connect with you?</h2>
+            <h2 className="text-purple-700 text-3xl font-bold max-sm:text-2xl">How do we connect with you?</h2>
             <form className="flex flex-col gap-4" onSubmit={handleFormSubmit}>
                 {contacts.map((contact, index) => (
                     <div key={index} className="flex flex-col gap-4 border p-4 rounded shadow">
@@ -75,10 +74,10 @@ export default function ContactInfo() {
                             <input
                                 type="text"
                                 value={contact.label}
-                                disabled
+                                disabled={index<2}
                                 placeholder="Phone"
                                 onChange={(e) => handleContactChange(index, "label", e.target.value)}
-                                className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600"
+                                className="outline-none w-full bg-white h-full px-2 py-4 font-medium text-gray-600"
                                 required
                             />
                         </div>
@@ -95,7 +94,7 @@ export default function ContactInfo() {
                         </div>
                     </div>
                 ))}
-                {contacts.length < 3 && (
+                <div className="flex justify-between">
                     <button
                         type="button"
                         onClick={addContact}
@@ -103,13 +102,13 @@ export default function ContactInfo() {
                     >
                         Add Contact
                     </button>
-                )}
-                <button
-                    type="submit"
-                    className="bg-gradient-to-bl from-violet-500 to-purple-700 text-white font-medium py-2 px-4 rounded hover:shadow-lg transition-all"
-                >
-                    Save Changes
-                </button>
+                    <button
+                        type="submit"
+                        className="bg-gradient-to-bl from-violet-500 to-purple-700 text-white font-medium py-2 px-4 rounded hover:shadow-lg transition-all"
+                    >
+                        Save Changes
+                    </button>
+                </div>
             </form>
         </section>
     );

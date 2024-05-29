@@ -71,10 +71,10 @@ export default function SkillInfo() {
 
     return (
         <section className="font-[raleway] flex flex-col gap-4">
-            <h2 className="text-purple-700 text-3xl font-bold">Showcase Your Skills</h2>
-            <form className="flex flex-col gap-4" onSubmit={handleFormSubmit}>
+            <h2 className="text-purple-700 text-3xl font-bold max-sm:text-2xl">Showcase Your Skills</h2>
+            <form className="flex flex-col gap-4 " onSubmit={handleFormSubmit}>
                 {skills.map((skill, skillIndex) => (
-                    <div key={skillIndex} className="flex flex-col gap-4 border p-4 rounded shadow">
+                    <div key={skillIndex} className="flex flex-col gap-4 border p-4 rounded shadow  max-sm:gap-2">
                         <div className="flex justify-between items-center">
                             <h3 className="text-purple-700 text-lg font-bold">Skill Section {skillIndex + 1}</h3>
                             <button
@@ -96,10 +96,10 @@ export default function SkillInfo() {
                                 required
                             />
                         </div>
-                        <div className="flex flex-col gap-2 mt-4">
+                        <div className="flex flex-col gap-2 mt-4 max-sm:mt-2">
                             <label className="text-purple-700 text-lg font-medium">Skills:</label>
                             {skill.points?.map((point, pointIndex) => (
-                                <div key={pointIndex} className="group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center">
+                                <div key={pointIndex} className="group p-3 py-0 max-sm:p-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center">
                                     <input
                                         type="text"
                                         value={point}
@@ -114,7 +114,7 @@ export default function SkillInfo() {
                             <button
                                 type="button"
                                 onClick={() => addPoint(skillIndex)}
-                                className="text-lg font-medium ml-3 border rounded text-purple-800 px-3 py-1.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700 w-fit"
+                                className="text-lg font-medium ml-3 max-sm:m-0 border rounded text-purple-800 px-3 py-1.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700 w-fit"
                             >
                                 Add Skill
                             </button>

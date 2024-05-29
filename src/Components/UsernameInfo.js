@@ -93,23 +93,23 @@ export default function UsernameInfo() {
     // console.log(user);
     return (
         <section className="font-[raleway] flex flex-col gap-4">
-            <h2 className='text-purple-700 text-3xl font-bold'>Get yourself a unique username</h2>
-            <form className="flex pr-12 gap-6 items-center mb-2">
+            <h2 className='text-purple-700 text-3xl max-sm:text-2xl font-bold'>Get yourself a unique username</h2>
+            <form className="flex pr-12 max-sm:pr-0 gap-6 items-center mb-2">
                 <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                     <h2 className=' text-purple-700 text-lg font-medium'>Username:</h2>
                     <input ref={usernameRef} className='outline-none w-full h-full px-2 py-4 font-medium text-gray-600' type='text' placeholder='johnDoe' onChange={((e) => setUsername(e.target.value))} value={username} />
                 </div>
             </form>
-            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 bg-purple-50">
-                <h3 className="text-2xl font-bold text-gray-600">Points to remember when choosing a username</h3>
+            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 max-sm:m-0 bg-purple-50">
+                <h3 className="text-2xl max-sm:text-xl max-sm:mb-4 font-bold text-gray-600">Points to remember when choosing a username</h3>
                 <ul>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700" >Username has to be unique, and gets displayed on your website URL.</li>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700" >Valid characters include: a-z, A-Z, 0-9, -, _</li>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700" >You can create only one website per user</li>
+                    <li className="list-disc ml-6 max-sm:ml-3 font-medium text-lg max-sm:text-base text-gray-700" >Username has to be unique, and gets displayed on your website URL.</li>
+                    <li className="list-disc ml-6 max-sm:ml-3 font-medium text-lg max-sm:text-base text-gray-700" >Valid characters include: a-z, A-Z, 0-9, -, _</li>
+                    <li className="list-disc ml-6 max-sm:ml-3 font-medium text-lg max-sm:text-base text-gray-700" >You can create only one website per user</li>
                 </ul>
             </section>
-            <h2 className='text-purple-700 text-3xl font-bold mt-8'>Please select the sections you want to display.</h2>
-            <div className="grid grid-cols-3 grid-flow-row">
+            <h2 className='text-purple-700 text-3xl max-sm:text-2xl font-bold mt-8'>Please select the sections you want to display.</h2>
+            <div className="grid grid-cols-3 grid-flow-row max-sm:mb-3">
                 {Object.entries(selectedSections).map(([section, isSelected]) => (
                     <label key={section} className="flex items-center ml-4 mt-2 row-span-1 text-lg font-medium text-gray-600 capitalize">
                         <input
@@ -122,11 +122,11 @@ export default function UsernameInfo() {
                     </label>
                 ))}
             </div>
-            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 bg-purple-50">
-                <h3 className="text-2xl font-bold text-gray-600">Tips on selecting the right section</h3>
+            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 max-sm:m-0 bg-purple-50">
+                <h3 className="text-2xl max-sm:text-xl max-sm:mb-4 font-bold text-gray-600">Tips on selecting the right section</h3>
                 <ul>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700" >Showcase the sections that you are confident about.</li>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700" >For example, if you don't have any work experience, do not select experience section.</li>
+                    <li className="list-disc ml-6 font-medium text-lg max-sm:text-base max-sm:ml-3 text-gray-700" >Showcase the sections that you are confident about.</li>
+                    <li className="list-disc ml-6 font-medium text-lg max-sm:text-base max-sm:ml-3 text-gray-700" >For example, if you don't have any work experience, do not select experience section.</li>
                     {/* <li className="list-disc ml-6 font-medium text-lg text-gray-700" >You can create only one website per user</li> */}
                 </ul>
             </section>

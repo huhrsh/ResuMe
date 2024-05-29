@@ -75,9 +75,9 @@ export default function EducationInfo() {
 
     return (
         <section className="flex gap-4 flex-col font-[raleway]">
-            <h2 className=' text-purple-700 text-3xl font-bold'>Let's talk about academics</h2>
+            <h2 className=' text-purple-700 text-3xl font-bold max-sm:text-2xl'>Let's talk about academics</h2>
             {education.map((edu, index) => (
-                <div className={`${currentOpen === edu.level ? "mb-6 border-purple-400":edu.complete?"bg-purple-100":edu.filled?"bg-red-100":"" } border rounded-lg p-4 px-6 cursor-pointer hover:shadow-lg transition-all duration-200`} key={index} onClick={() => { setCurrentOpen(currentOpen === edu.level ? null : edu.level) }}>
+                <div className={`${currentOpen === edu.level ? "mb-6 border-purple-400":edu.complete?"bg-purple-100":edu.filled?"bg-red-100":"" } border rounded-lg p-4 px-6 max-sm:px-4 cursor-pointer hover:shadow-lg transition-all duration-200`} key={index} onClick={() => { setCurrentOpen(currentOpen === edu.level ? null : edu.level) }}>
                     <div className="flex justify-between items-center">
                         <h3 className={`text-purple-700 text-lg font-bold 
                         `}>{edu.level}</h3>
@@ -98,14 +98,14 @@ export default function EducationInfo() {
                                 <h2 className=' text-purple-700 text-lg flex-shrink-0 font-medium'>Education Board:</h2>
                                 <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="board" placeholder="CBSE" value={edu.data.board || ''} onChange={(e) => handleChange(index, e)} />
                             </div>
-                            <div className="flex justify-start gap-4">
-                                <div className='border hover:shadow-lg focus-within:shadow-lg bg-white group p-3 py-0 rounded-xl transition-all duration-200 flex w-1/3 gap-3 items-center'>
+                            <div className="flex justify-start gap-4 max-sm:flex-col">
+                                <div className='border hover:shadow-lg focus-within:shadow-lg bg-white group p-3 py-0 rounded-xl transition-all duration-200 flex w-1/3 gap-3 items-center max-sm:w-full'>
                                     <h2 className=' text-purple-700 text-lg font-medium flex-shrink-0'>Year of completion:</h2>
                                     <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="end" placeholder="2024" value={edu.data.end || ''} onChange={(e) => handleChange(index, e)} />
                                     {/* <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="institution" placeholder="Institution" value={edu.data.institution || ''} onChange={(e) => handleChange(index, e)} /> */}
                                 </div>
 
-                                <select name="gradeType" value={edu.data.gradeType || ''} onChange={(e) => handleChange(index, e)} className="border p-2 rounded-xl w-1/3 text-gray-600 outline-none text-lg font-medium">
+                                <select name="gradeType" value={edu.data.gradeType || ''} onChange={(e) => handleChange(index, e)} className="border p-2 rounded-xl w-1/3 max-sm:w-full text-gray-600 outline-none text-lg font-medium max-sm:py-3">
                                     <option className="text-lg" value="" disabled>Select grade type</option>
                                     <option className="text-lg" value="cgpa_4">CGPA (out of 4)</option>
                                     <option className="text-lg" value="cgpa_10">CGPA (out of 10)</option>
@@ -114,7 +114,7 @@ export default function EducationInfo() {
                                 </select>
                                 {
                                     edu.data.gradeType &&
-                                    <div className='border hover:shadow-lg focus-within:shadow-lg bg-white group p-3 py-0 rounded-xl transition-all duration-200 flex w-1/3 gap-3 items-center'>
+                                    <div className='border hover:shadow-lg focus-within:shadow-lg bg-white group p-3 py-0 rounded-xl transition-all duration-200 flex w-1/3 gap-3 items-center max-sm:w-full'>
                                         <h2 className=' text-purple-700 text-lg font-medium flex-shrink-0'>Score:</h2>
                                         <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="grade" placeholder="Grade/Percentage" value={edu.data.grade || ''} onChange={(e) => handleChange(index, e)} />
                                     </div>
@@ -128,7 +128,7 @@ export default function EducationInfo() {
                                 <input type="text" name="institution" className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" placeholder="Indian Institute of Technology" value={edu.data.institution || ''} onChange={(e) => handleChange(index, e)} />
                                 {/* <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="institution" placeholder="Amity International School" value={edu.data.institution || ''} onChange={(e) => handleChange(index, e)} /> */}
                             </div>
-                            <div className="flex gap-4 justify-between">
+                            <div className="flex gap-4 justify-between max-sm:flex-col">
                                 <div className='border hover:shadow-lg focus-within:shadow-lg bg-white group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                                     <h2 className=' text-purple-700 text-lg flex-shrink-0 font-medium'>Degree Program:</h2>
                                     <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="degree" placeholder="B.Tech" value={edu.data.degree || ''} onChange={(e) => handleChange(index, e)} />
@@ -138,7 +138,7 @@ export default function EducationInfo() {
                                     <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="branch" placeholder="Computer Science and Engineering" value={edu.data.branch || ''} onChange={(e) => handleChange(index, e)} />
                                 </div>
                             </div>
-                            <div className="flex gap-4 justify-between">
+                            <div className="flex gap-4 justify-between max-sm:flex-col">
                                 <div className='border hover:shadow-lg focus-within:shadow-lg bg-white group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                                     <h2 className=' text-purple-700 text-lg flex-shrink-0 font-medium'>Start year:</h2>
                                     <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="start" placeholder="2021" value={edu.data.start || ''} onChange={(e) => handleChange(index, e)} />
@@ -148,8 +148,8 @@ export default function EducationInfo() {
                                     <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="end" placeholder="2025" value={edu.data.end || ''} onChange={(e) => handleChange(index, e)} />
                                 </div>
                             </div>
-                            <div className="flex gap-4 justify-start">
-                                <select className="border px-2 py-4 rounded-xl text-lg font-medium w-1/3 text-gray-600 outline-none" name="gradeType" value={edu.data.gradeType || ''} onChange={(e) => handleChange(index, e)}>
+                            <div className="flex gap-4 justify-start max-sm:flex-col">
+                                <select className="border px-2 py-4 rounded-xl text-lg font-medium w-1/3 text-gray-600 outline-none max-sm:w-full" name="gradeType" value={edu.data.gradeType || ''} onChange={(e) => handleChange(index, e)}>
                                     <option value="" disabled>Select grade type</option>
                                     <option value="cgpa_4">CGPA (out of 4)</option>
                                     <option value="cgpa_10">CGPA (out of 10)</option>
@@ -157,7 +157,7 @@ export default function EducationInfo() {
                                     <option value="percentage">Percentage</option>
                                 </select>
                                 {edu.data.gradeType &&
-                                    <div className='border hover:shadow-lg focus-within:shadow-lg bg-white group p-3 py-0 rounded-xl transition-all duration-200 flex w-1/3 gap-3 items-center'>
+                                    <div className='border hover:shadow-lg focus-within:shadow-lg bg-white max-sm:w-full group p-3 py-0 rounded-xl transition-all duration-200 flex w-1/3 gap-3 items-center'>
                                         <h2 className=' text-purple-700 text-lg font-medium flex-shrink-0'>Score:</h2>
                                         <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="grade" placeholder="Grade/Percentage" value={edu.data.grade || ''} onChange={(e) => handleChange(index, e)}  />
                                     </div>
@@ -168,14 +168,14 @@ export default function EducationInfo() {
                 </div>
             ))}
             <button className="bg-gradient-to-bl hover:shadow-lg hover:shadow-gray-300 duration-200 from-violet-500 to-purple-700 transition-all w-fit  px-6 text-lg font-medium rounded-md py-2 text-white"  onClick={(e)=>handleEducationChanges(e)}>Save Changes</button>
-            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 bg-purple-50">
-                <h3 className="text-2xl font-bold text-gray-600">Tips to simplify filling out your details</h3>
+            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 bg-purple-50 max-sm:mr-0">
+                <h3 className="text-2xl max-sm:text-xl  font-bold max-sm:mb-4 text-gray-600">Tips to simplify filling out your details</h3>
                 <ul>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700">Only fill in the details you want to showcase.</li>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700">You can leave any section empty if you do not wish to include it.</li>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700">Fields that will be showcased are colored purple.</li>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700">Fields that are not completely filled or not saved yet are colored red.</li>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700">Fields that will not be showcased are colored white.</li>
+                    <li className="list-disc ml-6 max-sm:ml-3 max-sm:text-base font-medium text-lg text-gray-700">Only fill in the details you want to showcase.</li>
+                    <li className="list-disc ml-6 max-sm:ml-3 max-sm:text-base font-medium text-lg text-gray-700">You can leave any section empty if you do not wish to include it.</li>
+                    <li className="list-disc ml-6 max-sm:ml-3 max-sm:text-base font-medium text-lg text-gray-700">Fields that will be showcased are colored purple.</li>
+                    <li className="list-disc ml-6 max-sm:ml-3 max-sm:text-base font-medium text-lg text-gray-700">Fields that are not completely filled or not saved yet are colored red.</li>
+                    <li className="list-disc ml-6 max-sm:ml-3 max-sm:text-base font-medium text-lg text-gray-700">Fields that will not be showcased are colored white.</li>
                 </ul>
             </section>
         </section>

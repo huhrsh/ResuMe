@@ -56,9 +56,9 @@ export default function ThemeInfo() {
     };
 
     return (
-        <div className="px-4">
-            <h2 className="text-purple-700 text-3xl font-bold mb-4">Choose Your Style</h2>
-            <div className="grid grid-cols-2 gap-4 mb-8 grid-flow-row">
+        <div className="px-4 max-sm:p-0">
+            <h2 className="text-purple-700 text-3xl font-bold mb-4 max-sm:text-2xl">Choose Your Style</h2>
+            <div className="grid grid-cols-2 gap-4 mb-8 grid-flow-row max-sm:grid-cols-1">
                 {styles.map(({ name, image }) => (
                     <div
                         key={name}
@@ -72,12 +72,12 @@ export default function ThemeInfo() {
                     </div>
                 ))}
             </div>
-            <h2 className="text-purple-700 text-3xl font-bold mb-4">Choose Your Font</h2>
-            <div className="grid grid-cols-4 gap-4">
+            <h2 className="text-purple-700 text-3xl font-bold mb-4 max-sm:text-2xl">Choose Your Font</h2>
+            <div className="grid grid-cols-4 gap-4 max-sm:grid-cols-2">
                 {fonts.map((font) => (
                     <div
                         key={font}
-                        className={`${font === selectedFont && "border-2 border-gray-600"} h-16 flex items-center justify-center cursor-pointer border rounded hover:shadow-lg transition-all duration-200`}
+                        className={`${font === selectedFont && "border-2 border-gray-600"} py-3 flex items-center justify-center cursor-pointer border rounded hover:shadow-lg transition-all duration-200`}
                         style={{ fontFamily: font }}
                         onClick={() => handleFontChange(font)}
                     >
@@ -85,9 +85,9 @@ export default function ThemeInfo() {
                     </div>
                 ))}
             </div>
-            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 mt-8 bg-purple-50 flex items-center gap-8">
-                <img src={workingImage} className="w-5/12" alt="working"/>
-                <h3 className="text-xl font-bold text-gray-600">We're currently expanding our range of styles and customizations to offer you more options. Please bear with us as we make these updates.</h3>
+            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 mt-8 bg-purple-50 flex items-center gap-8 max-sm:flex-col max-sm:mr-0">
+                <img src={workingImage} className="w-5/12 max-sm:w-full" alt="working"/>
+                <h3 className="text-xl font-bold text-gray-600 max-sm:text-base">We're currently expanding our range of styles and customizations to offer you more options. Please bear with us as we make these updates.</h3>
                 
             </section>
         </div>

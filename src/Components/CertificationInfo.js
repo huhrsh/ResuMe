@@ -132,7 +132,7 @@ export default function CertificationInfo() {
 
     return (
         <section className="font-[raleway] flex flex-col gap-4">
-            <h2 className="text-purple-700 text-3xl font-bold">Let's boast about all those Certificates</h2>
+            <h2 className="text-purple-700 text-3xl font-bold max-sm:text-2xl">Let's boast about all those Certificates</h2>
             <form className="flex flex-col gap-4" onSubmit={handleFormSubmit}>
                 {certifications.map((certification, index) => (
                     <div key={index} className="flex flex-col gap-4 border p-4 rounded shadow">
@@ -156,21 +156,22 @@ export default function CertificationInfo() {
                             <h2 className=' text-purple-700 text-lg font-medium'>Link:</h2>
                             <input type="text" value={certification.link} placeholder="Certificate link" onChange={(e) => handleCertificationChange(index, "link", e.target.value)} className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" required />
                         </div>
-                        <div className="flex gap-6">
+                        <div className="flex gap-6 max-sm:flex-col max-sm:gap-4">
                             <div className='border hover:shadow-lg focus-within:shadow-lg group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                                 <h2 className=' text-purple-700 text-lg font-medium flex-shrink-0'>Date of Issue:</h2>
-                                <input type="date" value={certification.issueDate} onChange={(e) => handleCertificationChange(index, "issueDate", e.target.value)} className="outline-none w-full h-full px-2 py-3 font-medium text-gray-600" />
+                                <input type="date" value={certification.issueDate} onChange={(e) => handleCertificationChange(index, "issueDate", e.target.value)} className="outline-none w-full h-full px-2 py-3 max-sm:py-3.5 bg-white font-medium text-gray-600" />
                             </div>
                             <div className='border hover:shadow-lg focus-within:shadow-lg group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                                 <h2 className=' text-purple-700 text-lg font-medium flex-shrink-0'>Valid till:</h2>
-                                {certification.validity !== "Lifetime" && (
+                                {certification.validity !== "Lifetime" ? (
                                     <input
                                         type="date"
                                         value={certification.validity}
                                         onChange={(e) => handleCertificationChange(index, "validity", e.target.value)}
-                                        className="outline-none w-full h-full px-2 py-3.5 font-medium text-gray-600"
+                                        className="outline-none w-full h-full px-2 py-3.5 font-medium text-gray-600 bg-white"
                                     />
-                                )}
+                                ):
+                                <span className="max-sm:py-3">&nbsp;</span>}
                             </div>
                             <div className="flex flex-shrink-0 items-center">
                                 <input
@@ -182,7 +183,7 @@ export default function CertificationInfo() {
                                 <span className="text-lg font-medium text-gray-600">Lifetime</span>
                             </div>
                         </div>
-                        <div className='border hover:shadow-lg focus-within:shadow-lg group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
+                        <div className='border hover:shadow-lg focus-within:shadow-lg group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center max-sm:py-0.5'>
                             <h2 className=' text-purple-700 text-lg font-medium'>Image:</h2>
                             <input type="file" accept="image/*" onChange={(e) => handleImageChange(index, e)} className="outline-none w-full h-full px-2 py-2 font-medium text-gray-600" />
                         </div>
@@ -197,13 +198,11 @@ export default function CertificationInfo() {
                     </button>
                 </div>
             </form>
-            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 bg-purple-50">
-                <h3 className="text-2xl font-bold text-gray-600">Tips that might help you</h3>
+            <section className="shadow shadow-purple-200 border rounded-xl p-4 mr-12 bg-purple-50 max-sm:m-0">
+                <h3 className="text-2xl font-bold text-gray-600 max-sm:text-xl max-sm:mb-4">Tips that might help you</h3>
                 <ul>
-                    <li className="list-disc ml-6 font-medium text-lg text-gray-700">Rest assured, if you've already uploaded an image and it displays as "No file chosen,"
-                        <li>
-                            it means only the files you select will appear, not the existing photos.</li>
-                    </li>
+                    <li className="list-disc ml-6  max-sm:ml-3 max-sm:text-base font-medium text-lg text-gray-700">Rest assured, if you've already uploaded an image and it displays as "No file chosen,"</li>
+                    <li className="list-disc ml-6  max-sm:ml-3 max-sm:text-base font-medium text-lg text-gray-700">it means only the files you select will appear, not the existing photos.</li>
                 </ul>
             </section>
         </section>

@@ -102,10 +102,10 @@ export default function Feedback() {
 
     return (
         <>
-            <div className="flex w-full items-center px-24 py-6 gap-24 font-[raleway]">
-                <img className="w-5/12" src={feedback} alt="feedback" />
-                <div className="flex flex-col gap-6">
-                    <h1 className="text-4xl antialiased font-semibold text-transparent bg-gradient-to-tr from-violet-800 to-purple-500 bg-clip-text">
+            <div className="flex w-full items-center px-24 py-6 gap-24 font-[raleway] max-sm:p-0 max-sm:flex-col max-sm:gap-4">
+                <img className="w-5/12 max-sm:w-full max-sm:scale-110" src={feedback} alt="feedback" />
+                <div className="flex flex-col gap-6 max-sm:w-full">
+                    <h1 className="text-4xl max-sm:text-2xl antialiased font-semibold text-transparent bg-gradient-to-tr from-violet-800 to-purple-500 bg-clip-text">
                         We're eager to improve. <br />Share your thoughts with us!
                     </h1>
                     <div className="flex p-4 px-6 min-h-48 rounded-3xl shadow-md gap-3 flex-col bg-white">
@@ -119,12 +119,12 @@ export default function Feedback() {
                             highlightSelectedOnly
                         />
                         {!user &&
-                            <input type="email" placeholder="johndoe@gmail.com" className="border py-2 px-3 rounded-xl text-lg outline-none hover:shadow-md transition-all duration-200 focus:shadow-md text-gray-600" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                            <input type="email" placeholder="johndoe@gmail.com" className="border py-2 px-3 rounded-xl text-lg font-medium outline-none hover:shadow-md transition-all duration-200 focus:shadow-md text-gray-600" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                         }
                         <textarea placeholder="your feedback" className="border py-1.5 px-3 rounded-xl text-lg font-medium min-h-32 outline-none hover:shadow-md transition-all duration-200 focus:shadow-md text-gray-600" value={feedbacks} onChange={(e) => { setFeedbacks(e.target.value) }}>
 
                         </textarea>
-                        <button onClick={() => { handleFeedback() }} className="rounded px-3 py-1 transition-all duration-200 text-white shadow hover:shadow-lg bg-gradient-to-tr from-purple-700 to-violet-500 w-fit text-xl font-medium" >Submit</button>
+                        <button onClick={() => { handleFeedback() }} className="rounded px-3 py-1 transition-all duration-200 text-white shadow hover:shadow-lg bg-gradient-to-tr from-purple-700 to-violet-500 w-fit text-xl max-sm:text-lg font-medium" >Submit</button>
                     </div>
                 </div>
             </div>

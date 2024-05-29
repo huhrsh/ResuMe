@@ -3,7 +3,7 @@ import { auth, db, provider } from "../Firebase";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import signInImage from "../Assets/Images/Alone-cuate.png"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import eye from "../Assets/Images/eye.png"
 import eyebrow from "../Assets/Images/eyebrow.png"
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -39,15 +39,15 @@ export default function SignUp() {
         try {
             const userSignIn = await signInWithEmailAndPassword(auth, email, password)
             if (userSignIn) {
-                const user=await getDoc(doc(db,'users',userSignIn.user.uid))
-                if(user.exists()){
+                const user = await getDoc(doc(db, 'users', userSignIn.user.uid))
+                if (user.exists()) {
                     setUser({ uid: userSignIn.user.uid, ...user.data() })
                     navigate('/dashboard/general')
                 }
-                else{
-                    const admin=await getDoc(doc(db,'admin',userSignIn.user.uid))   
-                    if(admin.exists()){
-                        setUser({ uid: userSignIn.user.uid, ...admin.data(), admin:true })
+                else {
+                    const admin = await getDoc(doc(db, 'admin', userSignIn.user.uid))
+                    if (admin.exists()) {
+                        setUser({ uid: userSignIn.user.uid, ...admin.data(), admin: true })
                         navigate('/admin-dashboard')
                     }
                 }
@@ -81,9 +81,9 @@ export default function SignUp() {
                         const userDoc = await setDoc(doc(db, 'users', user.uid), {
                             name: user.displayName,
                             email: user.email,
-                            websiteStatus:"inactive"
+                            websiteStatus: "inactive"
                         })
-                        setUser({ uid: user.uid, name: user.displayName, email: user.email, websiteStatus:"inactive" })
+                        setUser({ uid: user.uid, name: user.displayName, email: user.email, websiteStatus: "inactive" })
                         // if (userDoc) {
                         // toast.success("Account created.")
                         // navigate('/sign-in')
@@ -111,10 +111,10 @@ export default function SignUp() {
     return (
         <>
             {/* {loading && <Loading />} */}
-            <main className='w-screen px-24 h-[88vh] font-[raleway] gap-12 flex items-center justify-between  bg-cover'>
-                <img className='h-full aspect-square object-contain' alt='hi' src={signInImage} />
-                <form className='flex flex-col gap-4 w-6/12 justify-center pb-24 rounded-lg h-full p-6 px-12'>
-                    <h1 className='text-center w-fit text-5xl leading-relaxed antialiased font-bold text-transparent bg-gradient-to-tl from-violet-600 to-purple-700 bg-clip-text'>Welcome back</h1>
+            <main className='w-screen px-24 max-sm:px-6 h-[88vh] max-sm:h-[86vh] font-[raleway] gap-12 flex items-center justify-between max-sm:flex-col'>
+                <img className='h-full max-sm:hidden aspect-square object-contain' alt='hi' src={signInImage} />
+                <form className='flex flex-col gap-4 w-6/12 justify-center pb-24 rounded-lg h-full p-6 px-12 max-sm:px-0 max-sm:w-full'>
+                    <h1 className='text-center w-fit text-5xl max-sm:text-3xl leading-relaxed antialiased font-bold text-transparent bg-gradient-to-tl from-violet-600 to-purple-700 bg-clip-text'>Welcome back</h1>
                     <div className='border hover:shadow-lg focus-within:shadow-lg focus-within:scale-105  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                         <h2 className=' text-purple-700 text-lg font-medium'>Email:</h2>
                         <input ref={emailInputRef} className='outline-none w-full h-full px-2 py-4 font-medium text-gray-600' type='email' placeholder='johndoe@gmail.com' onChange={((e) => setEmail(e.target.value))} value={email} />
@@ -135,6 +135,7 @@ export default function SignUp() {
                             Sign in using google
                         </button>
                     </div>
+                    <Link className="text-lg font-medium text-gray-600" to='/sign-up'>Don't have an account? Sign up here!</Link>
                 </form>
             </main>
         </>

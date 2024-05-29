@@ -3,7 +3,7 @@ import { auth, db, provider } from "../Firebase";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import signUpImage from "../Assets/Images/Design Process-rafiki.png"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import eye from "../Assets/Images/eye.png"
 import eyebrow from "../Assets/Images/eyebrow.png"
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -57,8 +57,8 @@ export default function SignUp() {
                     const userDoc = await setDoc(doc(db, 'users', user.uid), {
                         name: name,
                         email: email,
-                        authorized:false,
-                        websiteStatus:"inactive"
+                        authorized: false,
+                        websiteStatus: "inactive"
                     })
                     console.log("Inside userdoc")
                     toast.success("Account created.")
@@ -107,9 +107,9 @@ export default function SignUp() {
                         const userDoc = await setDoc(doc(db, 'users', user.uid), {
                             name: user.displayName,
                             email: user.email,
-                            websiteStatus:"inactive"
+                            websiteStatus: "inactive"
                         })
-                        setUser({ uid: user.uid, name: user.displayName, email: user.email, websiteStatus:"inactive" })
+                        setUser({ uid: user.uid, name: user.displayName, email: user.email, websiteStatus: "inactive" })
                         // if (userDoc) {
                         // toast.success("Account created.")
                         // navigate('/sign-in')
@@ -136,9 +136,10 @@ export default function SignUp() {
     return (
         <>
             {/* {loading && <Loading />} */}
-            <main className='w-screen px-24 h-[88vh] font-[raleway] gap-12 flex items-center justify-between  bg-cover'>
-                <form className='flex flex-col gap-4 w-6/12 justify-center pb-24 rounded-lg h-full p-6 px-12'>
-                    <h1 className='text-center w-fit text-5xl leading-relaxed antialiased font-bold text-transparent bg-gradient-to-tl from-violet-600 to-purple-700 bg-clip-text'>Lets get started</h1>
+            <main className='w-screen px-24 h-[88vh] max-sm:h-[86h] font-[raleway] gap-12 flex items-center justify-between  bg-cover max-sm:flex-col-reverse max-sm:justify-center
+            max-sm:px-6'>
+                <form className='flex flex-col gap-4 w-6/12 justify-center pb-24 rounded-lg h-full p-6 px-12 max-sm:px-0 max-sm:w-full'>
+                    <h1 className='text-center w-fit text-5xl max-sm:text-3xl leading-relaxed antialiased font-bold text-transparent bg-gradient-to-tl from-violet-600 to-purple-700 bg-clip-text'>Lets get started</h1>
                     <div className='border hover:shadow-lg focus-within:shadow-lg focus-within:scale-105  group p-3 py-0 rounded-xl transition-all duration-200 flex w-full gap-3 items-center'>
                         <h2 className=' text-purple-700 text-lg font-medium'>Name:</h2>
                         <input ref={nameInputRef} className='outline-none w-full h-full px-2 py-4 font-medium text-gray-600' type='text' placeholder='John Doe' onChange={((e) => setName(e.target.value))} value={name} />
@@ -172,8 +173,9 @@ export default function SignUp() {
                             Sign in using google
                         </button>
                     </div>
+                    <Link className="text-lg font-medium text-gray-600" to='/sign-in'>Already have an account? Sign in here! </Link>
                 </form>
-                <img className='h-full aspect-square object-contain' alt='hi' src={signUpImage} />
+                <img className='h-full aspect-square object-contain max-sm:hidden' alt='hi' src={signUpImage} />
             </main>
         </>
         // <main className="flex px-20 w-screen items-center justify-between">

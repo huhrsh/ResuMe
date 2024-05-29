@@ -85,9 +85,9 @@ export default function ExperienceInfo() {
 
     return (
         <section className="flex gap-6 flex-col font-[raleway]">
-            <h2 className='text-purple-700 text-3xl font-bold'>"Do you have any prior experience?"</h2>
+            <h2 className='text-purple-700 text-3xl font-bold max-sm:text-2xl'>"Do you have any prior experience?"</h2>
             {experiences.map((exp, index) => (
-                <div key={index} className="border rounded-lg p-4 px-6 mb-4">
+                <div key={index} className="border rounded-lg p-4 px-6 mb-4  max-sm:px-4">
                     <div className="flex justify-between items-center">
                         <h3 className="text-purple-700 text-lg font-bold">Experience {index + 1}</h3>
                         <button className="rounded text-rose-600 text-lg font-medium px-3 py-0.5 transition-all duration-200 hover:text-white hover:shadow hover:bg-rose-600" onClick={() => removeExperience(index)}>Remove</button>
@@ -101,17 +101,17 @@ export default function ExperienceInfo() {
                             <h2 className=' text-purple-700 text-lg font-medium'>Company:</h2>
                             <input className="outline-none w-full h-full px-2 py-4 font-medium text-gray-600" type="text" name="company" placeholder="Company" value={exp.company} onChange={(e) => handleExperienceChange(index, e)} />
                         </div>
-                        <div className="flex gap-4">
-                            <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-1/2 gap-3 items-center'>
+                        <div className="flex gap-4 max-sm:flex-col">
+                            <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-1/2 gap-3 items-center max-sm:w-full'>
                                 <h2 className=' flex-shrink-0 text-purple-700 text-lg font-medium'>Start Date:</h2>
-                                <input className="outline-none w-full h-full px-2 py-3 font-medium text-gray-600" type="date" name="start" placeholder="Start Date" value={exp.start} onChange={(e) => handleExperienceChange(index, e)} />
+                                <input className="outline-none w-full h-full px-2 py-3 font-medium text-gray-600 max-sm:py-3.5" type="date" name="start" placeholder="Start Date" value={exp.start} onChange={(e) => handleExperienceChange(index, e)} />
                             </div>
-                            <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-1/2 gap-3 items-center'>
+                            <div className='border hover:shadow-lg focus-within:shadow-lg  group p-3 py-0 rounded-xl transition-all duration-200 flex w-1/2 gap-3 items-center max-sm:w-full'>
                                 <h2 className=' flex-shrink-0 text-purple-700 text-lg font-medium'>End Date:</h2>
                                 {!exp.current ?
-                                    <input className="outline-none w-full h-full px-2 py-3 font-medium text-gray-600" type="date" name="end" placeholder="End Date" value={exp.current ? "" : exp.end} onChange={(e) => handleExperienceChange(index, e)} disabled={exp.current} />
+                                    <input className="outline-none w-full h-full px-2 py-3 font-medium text-gray-600 max-sm:py-3.5" type="date" name="end" placeholder="End Date" value={exp.current ? "" : exp.end} onChange={(e) => handleExperienceChange(index, e)} disabled={exp.current} />
                                     :
-                                    <span className="w-full"></span>
+                                    <span className="w-full max-sm:py-3 inline-block">&nbsp;</span>
                                 }
                                 <label className="flex items-center">
                                     <input className="mr-2" type="checkbox" name="current" checked={exp.current} onChange={(e) => handleExperienceChange(index, e)} />
@@ -138,8 +138,8 @@ export default function ExperienceInfo() {
                 </div>
             ))}
             <div className="flex justify-between">
-                <button className="bg-gradient-to-bl hover:shadow-lg hover:shadow-gray-300 duration-200 from-violet-500 to-purple-700 transition-all w-fit  px-6 text-lg font-medium rounded-md py-2 text-white" onClick={addExperience}>Add Experience</button>
-                <button className="bg-gradient-to-bl hover:shadow-lg hover:shadow-gray-300 duration-200 from-violet-500 to-purple-700 transition-all w-fit  px-6 text-lg font-medium rounded-md py-2 text-white" onClick={handleExperienceChanges}>Save Experiences</button>
+                <button className="flex-shrink-0 bg-gradient-to-bl hover:shadow-lg hover:shadow-gray-300 duration-200 from-violet-500 to-purple-700 transition-all w-fit  px-6 text-lg font-medium rounded-md py-2 text-white" onClick={addExperience}>Add Experience</button>
+                <button className="flex-shrink-0 bg-gradient-to-bl hover:shadow-lg hover:shadow-gray-300 duration-200 from-violet-500 to-purple-700 transition-all w-fit  px-6 text-lg font-medium rounded-md py-2 text-white" onClick={handleExperienceChanges}>Save Changes</button>
             </div>
         </section>
     );
