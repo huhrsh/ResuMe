@@ -8,7 +8,7 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 
 export default function UserEducation() {
-    const {userDetails} = useOutletContext();
+    const { userDetails } = useOutletContext();
     const educationDetails = userDetails?.education?.filter((edu) => edu.complete);
 
     const desiredOrder = ['Doctorate', 'Postgraduate', 'Undergraduate', '12th', '10th'];
@@ -32,7 +32,7 @@ export default function UserEducation() {
                     <div className="flex flex-col gap-2 education-div"
                         style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}
                     >
-                        <h2 className='text-5xl font-bold user-loading-text'>{edu.level}</h2>
+                        <h2 className='max-sm:text-4xl text-5xl font-bold user-loading-text max-sm:w-[75vw]'>{edu.level}</h2>
                         <div><span>School:</span> {edu.data.institution}</div>
                         <div><span>Year:</span> {edu.data.end}</div>
                         <div><span>Board:</span> {edu.data.board}</div>
@@ -46,7 +46,7 @@ export default function UserEducation() {
                     <div className="flex flex-col gap-2 education-div"
                         style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}
                     >
-                        <h2 className='text-5xl font-bold user-loading-text'>{edu.level}</h2>
+                        <h2 className='max-sm:text-4xl text-5xl font-bold user-loading-text max-sm:w-[75vw]'>{edu.level}</h2>
                         <div><span>University:</span> {edu.data.institution}</div>
                         <div><span>Duration:</span> {edu.data.start} - {edu.data.end}</div>
                         <div><span>{educationLabel[edu.data.gradeType]}: </span>{edu.data.grade}</div>
@@ -60,22 +60,37 @@ export default function UserEducation() {
     };
 
     return (
-        <section
-            className="text-white w-screen py-32 px-20"
-        >
-            <Timeline position="alternate-reverse">
-                {sortedEducationDetails?.map((edu) => (
-                    <TimelineItem key={edu.level}>
-                        <TimelineSeparator>
-                            <TimelineDot />
-                            <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent>
-                            <div className="education-details">{renderEducationDetails(edu)}</div>
-                        </TimelineContent>
-                    </TimelineItem>
-                ))}
-            </Timeline>
-        </section>
+        <>
+            <section className="text-white w-screen py-32 px-20 hidden sm:block">
+                <Timeline position="alternate-reverse">
+                    {sortedEducationDetails?.map((edu) => (
+                        <TimelineItem key={edu.level}>
+                            <TimelineSeparator>
+                                <TimelineDot />
+                                <TimelineConnector />
+                            </TimelineSeparator>
+                            <TimelineContent>
+                                <div className="education-details">{renderEducationDetails(edu)}</div>
+                            </TimelineContent>
+                        </TimelineItem>
+                    ))}
+                </Timeline>
+            </section>
+            <section className="text-white w-screen py-28 sm:hidden">
+                <Timeline position="right">
+                    {sortedEducationDetails?.map((edu) => (
+                        <TimelineItem key={edu.level}>
+                            <TimelineSeparator>
+                                <TimelineDot />
+                                <TimelineConnector />
+                            </TimelineSeparator>
+                            <TimelineContent>
+                                <div className="education-details">{renderEducationDetails(edu)}</div>
+                            </TimelineContent>
+                        </TimelineItem>
+                    ))}
+                </Timeline>
+            </section>
+        </>
     );
 }

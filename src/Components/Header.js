@@ -5,6 +5,7 @@ import { useUser } from "../Context";
 import { ToastContainer, toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import downArrow from "../Assets/Images/angle-down.png"
+import downArrow1 from "../Assets/Images/angle-down (1).png"
 import { auth } from "../Firebase";
 import { signOut } from "firebase/auth";
 import Footer from "./Footer";
@@ -16,6 +17,7 @@ export default function Header() {
     const navigate = useNavigate()
     const handleSignOut = async (e) => {
         e.preventDefault();
+        setDropdown(false)
         try {
             navigate('/')
             await signOut(auth);
@@ -25,6 +27,8 @@ export default function Header() {
             console.error('Error during sign out:', error);
         }
     };
+
+
     const { user, loading } = useUser();
     return (
         <>
@@ -49,20 +53,20 @@ export default function Header() {
                                     }
                                 </button>
                                 {dropdown && <div className="flex sm:hidden flex-col top-12 justify-between absolute items-end text-lg font-medium gap-2">
-                                    {user.websiteStatus === 'active' && < Link target="_blank" className="flex-shrink-0 border bg-white rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to={`/${user.username}`}>
+                                    {user.websiteStatus === 'active' && < Link onClick={()=>{setDropdown(false)}} target="_blank" className="flex-shrink-0 w-full text-center  border bg-white rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to={`/${user.username}`}>
                                         Go to website
                                     </Link>
                                     }
                                     {
                                         user.admin ?
-                                            < Link className="border bg-white flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/admin-dashboard'>
+                                            < Link onClick={()=>{setDropdown(false)}} className="border bg-white flex-shrink-0 w-full text-center  rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/admin-dashboard'>
                                                 Dashboard
                                             </Link> :
-                                            < Link className="border bg-white flex-shrink-0 rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/dashboard/general'>
+                                            < Link onClick={()=>{setDropdown(false)}} className="border bg-white flex-shrink-0 w-full text-center rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/dashboard/general'>
                                                 Dashboard
                                             </Link>
                                     }
-                                    <button className="border bg-white rounded text-rose-600 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-rose-600" onClick={(e) => { handleSignOut(e) }}>
+                                    <button className="border  w-full text-center bg-white rounded text-rose-600 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-rose-600" onClick={(e) => { handleSignOut(e) }}>
                                         Sign out
                                     </button>
                                 </div >}
@@ -89,20 +93,20 @@ export default function Header() {
                         :
                         <>
                             <div className="relative">
-                                <button className=" sm:hidden rounded px-3 py-1 transition-all duration-200 text-white shadow hover:shadow-lg bg-gradient-to-tr from-purple-700 to-violet-500" onClick={() => { setDropdown1(!dropdown1) }}>Get Started
+                                <button className=" sm:hidden rounded px-3 py-2 transition-all duration-200 text-white shadow hover:shadow-lg bg-gradient-to-tr from-purple-700 to-violet-500 flex items-center font-medium gap-2" onClick={() => { setDropdown1(!dropdown1) }}>Get Started
                                     {
                                         dropdown1 ?
-                                            <img src={downArrow} className="transition-all duration-200 h-3 rotate-180" alt="down" />
-                                            : <img src={downArrow} className="transition-all duration-200 h-3" alt="down" />
+                                            <img src={downArrow1} className="transition-all duration-200 h-3 rotate-180" alt="down" />
+                                            : <img src={downArrow1} className="transition-all duration-200 h-3" alt="down" />
                                     }
                                 </button>
                                 {
                                     dropdown1 &&
-                                    <div className="flex justify-between max-sm:justify-end sm:hidden min-w-56 text-lg font-medium gap-6 ">
-                                        <Link className="max-sm:hidden rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-up'>
+                                    <div className="flex absolute w-full flex-col justify-between items-stretch top-12 right-0 sm:hidden text-lg font-medium gap-2 ">
+                                        <Link onClick={()=>{setDropdown1(false)}} className="border text-center rounded text-purple-700 px-3 py-1 bg-white transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-up'>
                                             Sign up
                                         </Link>
-                                        <Link className="max-sm:hidden rounded text-purple-700 px-3 py-1 transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-in'>
+                                        <Link onClick={()=>{setDropdown1(false)}} className="border text-center rounded text-purple-700 px-3 py-1 bg-white transition-all duration-200 hover:text-white hover:shadow hover:bg-purple-700" to='/sign-in'>
                                             Sign in
                                         </Link>
                                     </div>

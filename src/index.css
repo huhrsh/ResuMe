@@ -162,3 +162,11 @@ input::file-selector-button:hover {
   animation-delay: calc(0.1s * var(--index));
 }
 
+
+@media (max-width: 600px) {
+  .Toastify__toast-container {
+      margin: 5% 10% !important;
+      width: 80% !important;
+      padding: 0 !important;
+  }
+}

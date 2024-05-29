@@ -13,11 +13,11 @@ export default function UserHome() {
     }, []);
 
     return (
-        <div className="relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden" style={{
+        <div className="relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden max-sm:px-6" style={{
             fontFamily: userDetails.selectedFont ? userDetails.selectedFont : "outfit",
         }}>
             <div className=' z-10 text-white max-w-screen-lg cursor-default flex flex-col gap-2'>
-                <h1 className='text-[7rem] user-loading-text leading-none'>
+                <h1 className='text-[7rem] user-loading-text leading-none max-sm:text-7xl text-wrap'>
                     {userDetails.name}
                 </h1>
                 <h2 className='text-2xl font-light '>{userDetails.profession}</h2>
