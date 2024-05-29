@@ -14,7 +14,7 @@ export default function UserInfo() {
 
     const [pathName, setPathName] = useState(getEndUrlPart());
 
-    const navLinks = [
+    const [navLinks, setNavLinks] = useState([
         { to: "general", label: "General" },
         { to: "about", label: "About" },
         { to: "education", label: "Education" },
@@ -25,20 +25,24 @@ export default function UserInfo() {
         { to: "contacts", label: "Contacts" },
         { to: "themes", label: "Themes" },
         // {to: "submit", label:"Submit for approval"}
-    ];
+    ])
 
     useEffect(() => {
         if (!loading) {
             if (!user) {
                 navigate('/');
             }
-            else {
-                if (user.websiteStatus !== 'active') {
-                    navLinks.push({ to: "submit", label: "Submit for approval" })
-                }
+            if (user && user.websiteStatus !== 'active') {
+                setNavLinks((prev)=>[...prev, {to: "submit", label: "Submit for approval"}])
             }
         }
     }, [user, loading]);
+
+    // useEffect(() => {
+    //     if (!loading && user && user.websiteStatus !== 'active') {
+    //         setNavLinks((prev)=>[...prev, {to: "submit", label: "Submit for approval"}])
+    //     }
+    // }, [user])
 
     useEffect(() => {
         setPathName(getEndUrlPart())
