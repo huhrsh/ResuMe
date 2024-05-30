@@ -58,7 +58,6 @@ export default function SignUp() {
                     const userDoc = await setDoc(doc(db, 'users', user.uid), {
                         name: name,
                         email: email,
-                        authorized: false,
                         websiteStatus: "inactive"
                     })
                     console.log("Inside userdoc")

@@ -5,6 +5,12 @@ export default function UserContacts() {
     const { userDetails } = useOutletContext();
     const contacts = userDetails.contacts;
 
+    if(!contacts){
+        return(
+            <h1 className="user-loading-text text-5xl max-sm:text-3xl py-32 max-sm:py-28 px-20 max-sm:px-6">Nothing to show here</h1>
+        )
+    }
+
     return (
         <div className="py-32 px-32 max-sm:py-28 max-sm:px-6" style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}>
             <div className={`flex flex-col gap-10 items-start`}>

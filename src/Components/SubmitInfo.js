@@ -21,8 +21,13 @@ export default function SubmitInfo() {
     }, [user, loading])
 
     const handleRequestApproval = async () => {
-        if (!user.username || !user.about) {
-            toast.error("Please fill in your username");
+        if (!user.username) {
+            toast.error("Username cannot be empty!");
+            navigate('/dashboard/general')
+            return;
+        }
+        if ( !user.about) {
+            toast.error("About section cannot be empty!");
             navigate('/dashboard/general')
             return;
         }

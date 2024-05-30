@@ -59,6 +59,12 @@ export default function UserEducation() {
         }
     };
 
+    if(!educationDetails){
+        return(
+            <h1 className="user-loading-text text-5xl max-sm:text-3xl py-32 max-sm:py-28 px-20 max-sm:px-6">Nothing to show here</h1>
+        )
+    }
+
     return (
         <>
             <section className="text-white w-screen py-32 px-20 hidden sm:block">

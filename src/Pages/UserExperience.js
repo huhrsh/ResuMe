@@ -4,6 +4,12 @@ export default function UserExperience() {
     const { userDetails } = useOutletContext();
     const experiences = userDetails.experiences;
 
+    if(!experiences){
+        return(
+            <h1 className="user-loading-text text-5xl max-sm:text-3xl py-32 max-sm:py-28 px-20 max-sm:px-6">Nothing to show here</h1>
+        )
+    }
+
     return (
         <div className="py-32 pb-16 px-20 flex flex-col gap-20" style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}>
             {experiences.map((experience, index) => (

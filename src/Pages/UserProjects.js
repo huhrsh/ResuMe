@@ -17,6 +17,12 @@ export default function UserProjects() {
         }, 100);  
     };
 
+    if(!projects){
+        return(
+            <h1 className="user-loading-text text-5xl max-sm:text-3xl py-32 max-sm:py-28 px-20 max-sm:px-6">Nothing to show here</h1>
+        )
+    }
+
     return (
         <div className="py-32 pb-12 px-20 max-sm:px-6 max-sm:py-28 " style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
