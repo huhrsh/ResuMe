@@ -56,7 +56,7 @@ export default function UserHeader() {
     return (
         loading ? <UserLoading username={username} /> :
             <>
-                <header className={`flex justify-between items-center fixed z-50 px-12 py-4 max-sm:px-6 w-screen text-white`} style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : "outfit", fontSize: userDetails.selectedSize ? userDetails.selectedSize : 24 }}>
+                <header className={`flex justify-between items-center fixed z-50 px-12 py-4 max-sm:px-6 w-screen text-white`} style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : "outfit", fontSize:24 }}>
                     <Link onClick={()=>{setOpenMenu(false)}} className="cursor-pointer z-10" to={`/` + userDetails.username}>{userDetails.username}</Link>
                     {openMenu ?
                         <img src={cross} alt="cross" className={`h-8 z-10 sm:hidden`} onClick={() => { setOpenMenu(!openMenu) }} />
