@@ -38,17 +38,9 @@ export default function UserInfo() {
         }
     }, [user, loading]);
 
-    // useEffect(() => {
-    //     if (!loading && user && user.websiteStatus !== 'active') {
-    //         setNavLinks((prev)=>[...prev, {to: "submit", label: "Submit for approval"}])
-    //     }
-    // }, [user])
-
     useEffect(() => {
         setPathName(getEndUrlPart())
     }, [location.pathname]);
-
-
     return (
         <main className="w-screen p-12 max-sm:px-6 max-sm:py-8 flex font-[raleway] relative max-sm:flex-col">
             <aside className="sm:hidden user-info-aside gap-2 grid grid-cols-2 grid-flow-row mb-12" >

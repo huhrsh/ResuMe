@@ -22,7 +22,7 @@ export default function UsernameInfo() {
 
     useEffect(() => {
         if (user) {
-            setUsername(user.username ? user.username : "")
+            setUsername(user.username ? user.username.toLowerCase() : "")
             const sortedSections = Object.fromEntries(
                 Object.entries(user.selectedSections || selectedSections).sort(
                     ([sectionA], [sectionB]) => desiredOrder.indexOf(sectionA) - desiredOrder.indexOf(sectionB)
@@ -48,27 +48,27 @@ export default function UsernameInfo() {
             toast.warn("Username cannot be blank.")
             return;
         }
-        console.log(user.selectedSections)
-        console.log(selectedSections)
+        // console.log(user.selectedSections)
+        // console.log(selectedSections)
         if (username === user.username && selectedSections === user.selectedSections) {
             toast.warn("No change detected.")
             return;
         }
         setLoading(true);
-        const regex = /^[a-zA-Z0-9-_]+$/;
+        const regex = /^[a-z0-9-_]+$/;
 
         if (regex.test(username)) {
             try {
                 const userRef = collection(db, 'users');
-                const userQuery = query(userRef, where('username', '==', username));
+                const userQuery = query(userRef, where('username', '==', username.toLowerCase()));
                 const querySnapshot = await getDocs(userQuery);
 
                 if (querySnapshot.empty) {
                     await updateDoc(doc(db, 'users', user.uid), {
-                        username: username,
+                        username: username.toLowerCase(),
                         selectedSections: selectedSections
                     });
-                    setUser({ ...user, username, selectedSections })
+                    setUser({ ...user, username:username.toLowerCase(), selectedSections })
                     console.log("User updated");
                     toast.success("General section updated.")
                 } else if (username === user.username) {
@@ -76,7 +76,7 @@ export default function UsernameInfo() {
                         // username: username,
                         selectedSections: selectedSections
                     });
-                    setUser({ ...user, username, selectedSections })
+                    setUser({ ...user, username:username.toLowerCase(), selectedSections })
                     // console.log("User updated");
                     toast.success("General section updated.")
                 } else {
@@ -104,7 +104,7 @@ export default function UsernameInfo() {
                 <h3 className="text-2xl max-sm:text-xl max-sm:mb-4 font-bold text-gray-600">Points to remember when choosing a username</h3>
                 <ul>
                     <li className="list-disc ml-6 max-sm:ml-3 font-medium text-lg max-sm:text-base text-gray-700" >Username has to be unique, and gets displayed on your website URL.</li>
-                    <li className="list-disc ml-6 max-sm:ml-3 font-medium text-lg max-sm:text-base text-gray-700" >Valid characters include: a-z, A-Z, 0-9, -, _</li>
+                    <li className="list-disc ml-6 max-sm:ml-3 font-medium text-lg max-sm:text-base text-gray-700" >Valid characters include: a-z, 0-9, -, _</li>
                     <li className="list-disc ml-6 max-sm:ml-3 font-medium text-lg max-sm:text-base text-gray-700" >You can create only one website per user</li>
                 </ul>
             </section>
