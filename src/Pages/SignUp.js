@@ -106,9 +106,13 @@ export default function SignUp() {
                     const adminSnap = await getDoc(doc(db, 'admin', user.uid))
                     if (userSnap.exists()) {
                         setUser({ uid: user.uid, ...userSnap.data() })
+                        setLoading(false)
+                        navigate('/dashboard/general')
                     }
                     else if(adminSnap.exists()){
                         setUser({uid:user.uid, ...adminSnap.data(), admin:true})
+                        setLoading(false)
+                        navigate('/admin-dashboard')
                     }
                     else {
                         const userDoc = await setDoc(doc(db, 'users', user.uid), {

@@ -77,9 +77,13 @@ export default function SignUp() {
                     const adminSnap = await getDoc(doc(db, 'admin', user.uid))
                     if (userSnap.exists()) {
                         setUser({ uid: user.uid, ...userSnap.data() })
+                        setLoading(false)
+                        navigate('/dashboard/general')
                     }
-                    else if(adminSnap.exists()){
-                        setUser({uid:user.uid, ...adminSnap.data(), admin:true})
+                    else if (adminSnap.exists()) {
+                        setUser({ uid: user.uid, ...adminSnap.data(), admin: true })
+                        setLoading(false)
+                        navigate('/admin-dashboard')
                     }
                     else {
                         const userDoc = await setDoc(doc(db, 'users', user.uid), {
@@ -99,7 +103,7 @@ export default function SignUp() {
                 }
             }
             setLoading(false)
-            navigate('/dashboard/general')
+
             // console.log(user);
             // const credential = GoogleAuthProvider.credentialFromResult(result);
             // const token = credential.accessToken;
