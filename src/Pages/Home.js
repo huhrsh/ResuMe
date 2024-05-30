@@ -29,7 +29,7 @@ export default function Home() {
             max-sm:text-2xl max-sm:text-center before:sm:hidden
             ">Here's how you can build one in just 4 easy steps</h2>
 
-            <section className="flex items-center flex-col-reverse ">
+            <section className="flex items-center max-sm:flex-col-reverse ">
                 <div className="flex flex-col gap-6 pl-12 max-sm:pl-0">
                     <h1 className="text-6xl max-sm:text-3xl bg-gradient-to-tl font-bold from-violet-600 to-purple-800 text-transparent bg-clip-text flex items-center gap-3 pb-2">
                         1. Get yourself a unique username
