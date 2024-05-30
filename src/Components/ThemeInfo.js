@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "../Firebase";
 import { useUser } from "../Context";
 import { toast } from "react-toastify";
@@ -20,8 +20,18 @@ const fonts = ["raleway", "outfit", "poppins", "afacad", "josefin", "lato", "int
 
 export default function ThemeInfo() {
     const { user, setUser, setLoading } = useUser();
-    const [selectedStyle, setSelectedStyle] = useState(user ? user.selectedStyle : "Bold Purple");
-    const [selectedFont, setSelectedFont] = useState(user ? user.selectedFont : "raleway");
+    const [selectedStyle, setSelectedStyle] = useState( "Bold Purple");
+    const [selectedFont, setSelectedFont] = useState("raleway");
+
+    useEffect(()=>{
+        if(user && user.selectedFont){
+            setSelectedFont(user.selectedFont)   
+        }
+        if(user && user.selectedStyle){
+            setSelectedStyle(user.selectedStyle)
+        }
+    },[user])
+
 
     const handleStyleChange = async (style) => {
         setSelectedStyle(style);

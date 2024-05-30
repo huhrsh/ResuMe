@@ -46,6 +46,7 @@ export default function SignUp() {
         confirmPasswordInputRef.current.blur();
         if (password !== confirmPassword) {
             toast.error("Passwords do not match");
+            setLoading(false)
             return;
         }
         try {
@@ -70,15 +71,18 @@ export default function SignUp() {
                         await deleteUser(user)
                         toast.error("Error in creating user.");
                         console.log("Error in creating user, auth deleted.");
+                        setLoading(false)
                         return;
                     } catch (error) {
                         console.log("Error in deleting auth user", error);
+                        setLoading(false)
                         return;
                     }
                 }
             }
         } catch (error) {
             // const errorCode = error.code;
+            setLoading(false)
             const errorMessage = error.message;
             toast.warn(errorMessage?.split("auth/")[1].split(')')[0].split('-').join(" "));
         }

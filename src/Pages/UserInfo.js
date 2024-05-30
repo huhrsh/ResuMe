@@ -33,7 +33,18 @@ export default function UserInfo() {
                 navigate('/');
             }
             if (user && user.websiteStatus !== 'active') {
-                setNavLinks((prev)=>[...prev, {to: "submit", label: "Submit for approval"}])
+                setNavLinks([
+                    { to: "general", label: "General" },
+                    { to: "about", label: "About" },
+                    { to: "education", label: "Education" },
+                    { to: "experience", label: "Work Experience" },
+                    { to: "projects", label: "Projects" },
+                    { to: "certifications", label: "Certifications" },
+                    { to: "skills", label: "Skills" },
+                    { to: "contacts", label: "Contacts" },
+                    { to: "themes", label: "Themes" },
+                    {to: "submit", label:"Submit for approval"}
+                ])
             }
         }
     }, [user, loading]);
