@@ -42,7 +42,7 @@ export default function AboutInfo() {
                 about: aboutText
             })
             setUser({...user,profession,about:aboutText})
-            console.log("User updated");
+            // console.log("User updated");
             toast.success("About section updated.")
         } catch (err) {
             console.log("error in updating section")

@@ -78,7 +78,7 @@ export default function ExperienceInfo() {
             setUser({ ...user, experiences })
             toast.success("Experience section updated.");
         } catch (err) {
-            console.log(err);
+            console.log("Error in updating experience",err);
         }
         setLoading(false);
     };

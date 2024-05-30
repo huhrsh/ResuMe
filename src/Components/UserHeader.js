@@ -43,7 +43,7 @@ export default function UserHeader() {
         fetchUser();
     }, [username, navigate]);
 
-    console.log(userDetails);
+    // console.log(userDetails);
 
     const desiredOrder = ['education', 'projects', 'experience', 'certifications', 'skills', 'contacts'];
 

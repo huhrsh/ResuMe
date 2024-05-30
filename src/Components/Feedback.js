@@ -71,13 +71,15 @@ export default function Feedback() {
 
     async function handleFeedback() {
         try {
-            setLoading(true);
             if (!rating) {
                 toast.warn("Please give a rating.");
+                return;
             }
             if (!email) {
                 toast.warn("Please enter email.");
+                return;
             }
+            setLoading(true);
             const feedbackDoc = await addDoc(collection(db, 'feedback'), {
                 email,
                 rating,
@@ -96,7 +98,7 @@ export default function Feedback() {
             setLoading(false)
         }
         catch (err) {
-            console.log(err);
+            console.log("Error in sending feedback",err);
         }
     }
 

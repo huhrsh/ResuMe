@@ -69,7 +69,7 @@ export default function UsernameInfo() {
                         selectedSections: selectedSections
                     });
                     setUser({ ...user, username:username.toLowerCase(), selectedSections })
-                    console.log("User updated");
+                    // console.log("User updated");
                     toast.success("General section updated.")
                 } else if (username === user.username) {
                     await updateDoc(doc(db, 'users', user.uid), {

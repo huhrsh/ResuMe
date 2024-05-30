@@ -12,35 +12,7 @@ export default function AdminDashboard() {
     const [pendingUsers, setPendingUsers] = useState([]);
     const navigate = useNavigate()
     const [selectedUser, setSelectedUser] = useState()
-    // useEffect(() => {
-    //     setLoading(true);
-    //     if (!loading && user && user.admin) {
-    //         const getUsers = async () => {
-    //             try {
-    //                 const q = query(collection(db, 'users'), where('websiteStatus', '==', 'pending'))
-    //                 const snapshot = await getDocs(q)
-    //                 const pendingUsersData = [];
-    //                 snapshot.forEach((doc) => {
-    //                     console.log(doc)
-    //                     pendingUsersData.push({ id: doc.id, ...doc.data() });
-    //                 });
-    //                 setPendingUsers(pendingUsersData);
-    //             } catch (error) {
-    //                 console.error("Error fetching pending users:", error);
-    //             }
-    //         };
-    //         setLoading(false);
-
-    //         getUsers();
-    //     }
-    //     else {
-    //         console.log(user)
-    //         toast.error("Access denied.");
-    //         navigate('/');
-    //         setLoading(false);
-    //     }
-    // }, [loading]);
-
+    
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);

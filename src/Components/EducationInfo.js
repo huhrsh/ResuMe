@@ -63,11 +63,11 @@ export default function EducationInfo() {
                 education
             })
             setUser({...user,education})
-            console.log('education: ',education);
+            // console.log('education: ',education);
             toast.success("Education section updated.")
         }
         catch(err){
-            console.log(err)
+            console.log("Error in updating education data: ",err)
         }
         setCurrentOpen()
         setLoading(false)

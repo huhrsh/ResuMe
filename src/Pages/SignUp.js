@@ -53,14 +53,14 @@ export default function SignUp() {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password)
             const user = userCredential.user;
             if (user) {
-                console.log("inside user");
+                // console.log("inside user");
                 try {
                     const userDoc = await setDoc(doc(db, 'users', user.uid), {
                         name: name,
                         email: email,
                         websiteStatus: "inactive"
                     })
-                    console.log("Inside userdoc")
+                    // console.log("Inside userdoc")
                     toast.success("Account created.")
                     await signOut(auth)
                     navigate('/sign-in')
