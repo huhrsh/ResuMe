@@ -7,18 +7,18 @@ export default function UserContacts() {
 
     if(!contacts){
         return(
-            <h1 className="user-loading-text text-5xl max-sm:text-3xl py-32 max-sm:py-28 px-20 max-sm:px-6">Nothing to show here</h1>
+            <h1 style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }} className="nothing-to-show">Nothing to show here</h1>
         )
     }
 
     return (
-        <div className="py-32 px-32 max-sm:py-28 max-sm:px-6" style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}>
-            <div className={`flex flex-col gap-10 items-start`}>
+        <div className="contact-outer-div" style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}>
+            <div className='contact-inner-div'>
                 {contacts.map((contact, index) => (
-                        <Link target="_blank" key={index} to={(contact.label==='Phone' && 'tel:'+contact.value) || (contact.label==='Email' && 'mailto:'+contact.value) || contact.value} className="flex gap-2 items-center group transition-all duration-200 ease-in-out max-sm:flex-col max-sm:items-start">
-                            <h3 className="text-5xl max-sm:text-3xl font-bold user-loading-text">{contact.label} </h3>
-                            <p className="group-hover:pl-4 text-lg text-white pt-2 w-0 overflow-hidden group-hover:w-full transition-all duration-500 ease-in-out max-sm:w-full">{contact.value}</p>
-                            <span className="text-5xl font-bold user-loading-text max-sm:hidden">|</span>
+                        <Link target="_blank" key={index} to={(contact.label==='Phone' && 'tel:'+contact.value) || (contact.label==='Email' && 'mailto:'+contact.value) || contact.value} className="group contact-div">
+                            <h3 className="contact-label">{contact.label} </h3>
+                            <p className="w-0 group-hover:pl-4 group-hover:w-full contact-data">{contact.value}</p>
+                            <span className="dash">|</span>
                         </Link>
 
                 ))}

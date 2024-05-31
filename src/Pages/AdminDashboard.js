@@ -68,9 +68,9 @@ export default function AdminDashboard() {
 
     return (
         <>
-            <div className="p-4 px-12 font-[raleway]">
+            <div className="p-4 px-12 font-[raleway] max-sm:px-6">
                 <h2 className="text-purple-700 text-2xl font-bold mb-4">Pending Users</h2>
-                <div className="grid grid-cols-2 grid-flow-row">
+                <div className="grid grid-cols-2 max-sm:grid-cols-1 grid-flow-row">
                     {pendingUsers.map((user) => (
                         <div key={user.id} className="border rounded-md p-4 mb-4">
                             <h3 className="text-xl font-bold text-purple-700">{user.name}</h3>

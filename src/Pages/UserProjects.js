@@ -19,66 +19,58 @@ export default function UserProjects() {
 
     if(!projects){
         return(
-            <h1 className="user-loading-text text-5xl max-sm:text-3xl py-32 max-sm:py-28 px-20 max-sm:px-6">Nothing to show here</h1>
+            <h1 style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }} className="nothing-to-show">Nothing to show here</h1>
         )
     }
 
     return (
-        <div className="py-32 pb-12 px-20 max-sm:px-6 max-sm:py-28 " style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="project-outer-div" style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}>
+            <div className="project-grid">
                 {projects.map((project, index) => (
-                    <div
-                        key={index}
-                        className={`h-auto rounded-lg p-4 max-sm:p-0 cursor-pointer border max-sm:overflow-hidden border-gray-400 group transition-all duration-200 ${selectedProject === project ? 'border-yellow-400' : ''}`}
-                        onClick={() => handleProjectClick(project)}
-                    >
-                        <div className="group relative overflow-hidden">
-                            <p className="know-more-text absolute top-2 right-2 user-border-text text-4xl -z-10">Know More &gt;</p>
-                            <img
-                                src={project.image || defaultImage}
-                                alt={project.projectTitle}
-                                className="bg-black w-full aspect-video object-cover max-sm:rounded-none rounded-lg transition-transform duration-150 ease-linear origin-top-left group-hover:rotate-12 group-hover:translate-y-0 group-hover:-translate-x-8"
-                            />
+                    <div key={index} className={` ${selectedProject === project ? 'selected-project group' : 'not-selected-project group'}`} onClick={() => handleProjectClick(project)} >
+                        <div className="group project-div">
+                            <p className="know-more-text">Know More &gt;</p>
+                            <img src={project.image || defaultImage} alt={project.projectTitle} className="image group-hover:rotate-12 group-hover:translate-y-0 group-hover:-translate-x-8" />
                         </div>
-                        <h2 className="mt-8 mb-2 max-sm:m-2 max-sm:mt-4 max-sm:text-4xl text-5xl font-bold user-loading-text">{project.projectTitle}</h2>
-                        <p className="text-gray-200 max-sm:m-2">{project.tagline}</p>
+                        <h2 className="heading">{project.projectTitle}</h2>
+                        <p className="title">{project.tagline}</p>
                     </div>
                 ))}
             </div>
 
             {selectedProject && (
-                <div ref={projectDetailsRef} className="mt-12 p-6 max-sm:p-0 text-white rounded-lg flex flex-col gap-2">
-                    <h2 className="text-5xl max-sm:text-4xl user-loading-text font-bold ">{selectedProject.projectTitle}</h2>
-                    <p className="text-lg"> {selectedProject.tagline}</p>
-                    <div className="flex flex-col mt-8 gap-2">
-                        <h3 className="user-border-text text-4xl font-bold">Overview</h3>
-                        <p className="text-lg text-gray-100">{selectedProject.overview}</p>
+                <div ref={projectDetailsRef} className="project-that-is-opened">
+                    <h2 className="heading">{selectedProject.projectTitle}</h2>
+                    <p className="tagline"> {selectedProject.tagline}</p>
+                    <div className="inner-div">
+                        <h3 className="heading">Overview</h3>
+                        <p className="overview">{selectedProject.overview}</p>
                     </div>
-                    <div className="flex flex-col mt-8">
-                        <h3 className="user-border-text text-4xl font-bold">Technologies/ Libraries used:</h3>
-                        <ul className="list-disc list-inside pl-4 text-lg">
+                    <div className="inner-div">
+                        <h3 className="heading">Technologies/ Libraries used:</h3>
+                        <ul className="list">
                             {selectedProject.technologies.map((tech, index) => (
-                                <li className="py-1.5 text-gray-100" key={index}>{tech}</li>
+                                <li className="points" key={index}>{tech}</li>
                             ))}
                         </ul>
                     </div>
-                    <div className="flex flex-col mt-8">
-                        <h3 className="user-border-text text-4xl font-bold">Challenges faced:</h3>
-                        <ul className="list-disc list-inside pl-4 text-lg">
+                    <div className="inner-div">
+                        <h3 className="heading">Challenges faced:</h3>
+                        <ul className="list">
                             {selectedProject.challenges.map((challenge, index) => (
-                                <li className="py-1.5 text-gray-100" key={index}>{challenge}</li>
+                                <li className="points" key={index}>{challenge}</li>
                             ))}
                         </ul>
                     </div>
-                    <div className="">
-                        <h3 className="user-border-text text-4xl font-bold">Lessons learnt:</h3>
-                        <ul className="list-disc list-inside pl-4 text-lg">
+                    <div className="inner-div">
+                        <h3 className="heading">Lessons learnt:</h3>
+                        <ul className="list">
                             {selectedProject.lessons.map((lesson, index) => (
-                                <li className="py-1.5 text-gray-100" key={index}>{lesson}</li>
+                                <li className="points" key={index}>{lesson}</li>
                             ))}
                         </ul>
                     </div>
-                    <a href={`https://${selectedProject.githubLink}`} target="_blank" rel="noopener noreferrer" className="user-border-text text-4xl font-bold flex gap-2 items-center">
+                    <a href={`https://${selectedProject.githubLink}`} target="_blank" rel="noopener noreferrer" className="project-link">
                         Project Link <img className="h-5" src={link} alt="link"/>
                     </a>
                 </div>

@@ -29,10 +29,8 @@ export default function UserEducation() {
             case '10th':
             case '12th':
                 return (
-                    <div className="flex flex-col gap-2 education-div"
-                        style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}
-                    >
-                        <h2 className='max-sm:text-4xl text-5xl font-bold user-loading-text max-sm:w-[75vw]'>{edu.level}</h2>
+                    <div className="education-div" style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }} >
+                        <h2 className=''>{edu.level}</h2>
                         <div><span>School:</span> {edu.data.institution}</div>
                         <div><span>Year:</span> {edu.data.end}</div>
                         <div><span>Board:</span> {edu.data.board}</div>
@@ -43,10 +41,8 @@ export default function UserEducation() {
             case 'Postgraduate':
             case 'Doctorate':
                 return (
-                    <div className="flex flex-col gap-2 education-div"
-                        style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }}
-                    >
-                        <h2 className='max-sm:text-4xl text-5xl font-bold user-loading-text max-sm:w-[75vw]'>{edu.level}</h2>
+                    <div className="education-div" style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }} >
+                        <h2 className=''>{edu.level}</h2>
                         <div><span>University:</span> {edu.data.institution}</div>
                         <div><span>Duration:</span> {edu.data.start} - {edu.data.end}</div>
                         <div><span>{educationLabel[edu.data.gradeType]}: </span>{edu.data.grade}</div>
@@ -61,13 +57,13 @@ export default function UserEducation() {
 
     if(!educationDetails){
         return(
-            <h1 className="user-loading-text text-5xl max-sm:text-3xl py-32 max-sm:py-28 px-20 max-sm:px-6">Nothing to show here</h1>
+            <h1 style={{ fontFamily: userDetails.selectedFont ? userDetails.selectedFont : 'Outfit' }} className="nothing-to-show">Nothing to show here</h1>
         )
     }
 
     return (
         <>
-            <section className="text-white w-screen py-32 px-20 hidden sm:block">
+            <section className="education-desktop">
                 <Timeline position="alternate-reverse">
                     {sortedEducationDetails?.map((edu) => (
                         <TimelineItem key={edu.level}>
@@ -82,7 +78,7 @@ export default function UserEducation() {
                     ))}
                 </Timeline>
             </section>
-            <section className="text-white w-screen py-28 sm:hidden">
+            <section className="education-mobile">
                 <Timeline position="right">
                     {sortedEducationDetails?.map((edu) => (
                         <TimelineItem key={edu.level}>
