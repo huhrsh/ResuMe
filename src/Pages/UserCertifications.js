@@ -22,9 +22,9 @@ export default function UserCertifications() {
                             <div className="certificate-data-div group-hover:py-8 h-0 group-hover:h-full">
                                 <h2 className="certificate-heading">{cert.title}</h2>
                                 <p className="certificate-organizer">by {cert.organizer}</p>
-                                <p className="certificate-point">Issued on: {new Date(cert.issueDate).toLocaleDateString()}</p>
-                                <p className="certificate-point">{cert.validity === 'Lifetime' ? 'Validity: Lifetime' : "Valid till: " + new Date(cert.validity).toLocaleDateString()}</p>
-                                <p className="certificate-point">{new Date(cert.issueDate).toLocaleDateString()} - {cert.validity === 'Lifetime' ? 'Lifetime' : "" + new Date(cert.validity).toLocaleDateString()}</p>
+                                <p className="certificate-point-desktop">Issued on: {new Date(cert.issueDate).toLocaleDateString()}</p>
+                                <p className="certificate-point-desktop">{cert.validity === 'Lifetime' ? 'Validity: Lifetime' : "Valid till: " + new Date(cert.validity).toLocaleDateString()}</p>
+                                <p className="certificate-point-mobile">{new Date(cert.issueDate).toLocaleDateString()} - {cert.validity === 'Lifetime' ? 'Lifetime' : "" + new Date(cert.validity).toLocaleDateString()}</p>
                             </div>
                         </div>
                     </Link>

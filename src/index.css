@@ -199,7 +199,7 @@ input::file-selector-button:hover {
 }
 
 .bold-purple-main {
-  @apply w-screen min-h-screen h-auto backdrop-blur-3xl relative;
+  @apply w-screen min-h-screen h-auto backdrop-blur-3xl relative antialiased;
 
   .nothing-to-show {
     @apply user-loading-text text-5xl max-sm:text-3xl py-32 max-sm:py-28 px-20 max-sm:px-6
@@ -314,7 +314,7 @@ input::file-selector-button:hover {
       }
 
       .project-link {
-        @apply flex gap-2 items-center user-border-text text-4xl font-bold;
+        @apply flex gap-2 items-center user-border-text text-4xl font-bold mt-4;
       }
     }
   }
@@ -346,8 +346,11 @@ input::file-selector-button:hover {
               @apply text-purple-400 text-xl font-normal;
             }
 
-            .certificate-point {
+            .certificate-point-desktop {
               @apply text-lg text-gray-200 max-sm:hidden;
+            }
+            .certificate-point-mobile {
+              @apply text-lg text-gray-200 sm:hidden;
             }
           }
         }
@@ -359,7 +362,7 @@ input::file-selector-button:hover {
     @apply py-28 pb-16 px-6 sm:hidden;
 
     .skill-container {
-      @apply p-4 bg-[#00000030] rounded-lg inline-block mb-1 w-full;
+      @apply p-4 bg-[#00000030] rounded-lg inline-block mb-2 w-full;
 
       .skill-heading {
         @apply text-3xl font-bold user-loading-text;
@@ -410,11 +413,11 @@ input::file-selector-button:hover {
         @apply flex gap-2 items-center transition-all duration-200 ease-in-out max-sm:flex-col max-sm:items-start;
 
         .contact-label {
-          @apply text-5xl max-sm:text-3xl font-bold user-loading-text;
+          @apply text-5xl max-sm:text-3xl font-bold user-loading-text flex-shrink-0;
         }
 
         .contact-data {
-          @apply text-lg text-white pt-2 overflow-hidden transition-all duration-500 ease-in-out max-sm:w-full;
+          @apply text-lg text-white pt-2 overflow-hidden transition-all duration-500 ease-in-out max-sm:w-full text-nowrap;
         }
 
         .dash {
@@ -496,7 +499,7 @@ input::file-selector-button:hover {
 }
 
 .simply-black-main {
-  @apply w-screen min-h-screen h-auto backdrop-blur-xl relative;
+  @apply w-screen min-h-screen h-auto backdrop-blur-xl relative antialiased ;
 
   .nothing-to-show {
     @apply text-4xl max-sm:text-3xl py-32 max-sm:py-28 px-20 max-sm:px-6 text-amber-400
@@ -611,7 +614,7 @@ input::file-selector-button:hover {
       }
 
       .project-link {
-        @apply flex gap-2 items-center text-amber-400 text-3xl font-semibold;
+        @apply flex gap-2 items-center text-amber-400 text-3xl font-semibold mt-4;
         ;
       }
     }
@@ -644,8 +647,11 @@ input::file-selector-button:hover {
               @apply text-cyan-300 text-xl font-normal;
             }
 
-            .certificate-point {
+            .certificate-point-desktop {
               @apply text-lg text-gray-200 max-sm:hidden;
+            }
+            .certificate-point-mobile {
+              @apply text-lg text-gray-200 sm:hidden;
             }
           }
         }
@@ -657,7 +663,7 @@ input::file-selector-button:hover {
     @apply py-28 pb-16 px-6 sm:hidden;
 
     .skill-container {
-      @apply p-4 bg-[#00000030] rounded-lg inline-block mb-1 w-full;
+      @apply p-4 bg-[#00000030] rounded-lg inline-block mb-2 w-full;
 
       .skill-heading {
         @apply text-3xl font-semibold text-amber-300;
@@ -708,11 +714,11 @@ input::file-selector-button:hover {
         @apply flex gap-2 items-center transition-all duration-200 ease-in-out max-sm:flex-col max-sm:items-start;
 
         .contact-label {
-          @apply text-4xl text-amber-400 max-sm:text-3xl font-semibold ;
+          @apply text-4xl text-amber-400 max-sm:text-3xl font-semibold flex-shrink-0;
         }
 
         .contact-data {
-          @apply text-lg text-white pt-2 overflow-hidden transition-all duration-500 ease-in-out max-sm:w-full;
+          @apply text-lg text-white pt-2 overflow-hidden transition-all duration-500 ease-in-out max-sm:w-full text-nowrap;
         }
 
         .dash {

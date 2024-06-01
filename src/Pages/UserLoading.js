@@ -10,8 +10,8 @@ export default function UserLoading({ username }) {
 
     return (
         <>
-            <div className="absolute inset-0 bg-cover backdrop-blur-lg max-sm:w-screen max-sm:h-screen max-sm:overflow-hidden" style={{ backgroundImage: `url(${bgImage})` }}></div>
-            <div className="backdrop-blur-3xl w-screen h-screen "></div>
+            {/* <div className="absolute inset-0 bg-cover backdrop-blur-lg max-sm:w-screen max-sm:h-screen max-sm:overflow-hidden" style={{ backgroundImage: `url(${bgImage})` }}></div> */}
+            <div className="backdrop-blur-3xl w-screen h-screen bg-[#000000dd]"></div>
             <div className='h-screen w-screen flex items-center justify-center absolute top-0 sm:hidden'>
                 <div className='w-1/2 flex items-center justify-end'>
                     <h1 className='animate__animated animate__fadeInDown  z-50 text-9xl max-sm:text-7xl font-semibold user-loading-text'>
