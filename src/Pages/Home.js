@@ -138,7 +138,7 @@ export default function Home() {
                             className="flex p-4 px-6 flex-col gap-4 border rounded-3xl bg-gray-100"
                         >
                             <Rating defaultValue={review.rating} size="large" readOnly className="brightness-110" />
-                            <p className="text-purple-700 font-[raleway] text-xl font-medium antialiased">
+                            <p className="text-purple-700 font-[raleway] text-xl font-medium antialiased max-sm:text-lg">
                                 {review.text}
                             </p>
                         </SwiperSlide>
