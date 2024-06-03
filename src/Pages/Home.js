@@ -6,8 +6,22 @@ import customizeImage from "../Assets/Images/Advanced customization-rafiki.png"
 import celebrateImage from "../Assets/Images/Celebration-cuate.png"
 import dashboardImage from "../Assets/Images/Control Panel-bro.png"
 import changeImage from "../Assets/Images/Version control-cuate.png"
+import coffeeDrinkingImage from "../Assets/Images/Coffee break-cuate.png"
+import { useState } from "react"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/effect-cards';
+import { EffectCards } from 'swiper/modules';
+import Rating from '@mui/material/Rating';
+import graphImage from "../Assets/Images/graph (15).png"
 
 export default function Home() {
+    const [reviews, setReviews] = useState([
+        { rating: 5, text: "Fantastic website! It made creating and customizing my portfolio site easy and enjoyable. Highly recommend!" },
+        { rating: 5, text: "meow meow nyah" },
+        { rating: 5, text: "Excellent tool for creating a custom portfolio website. User-friendly interface and great customization options!" },
+    ])
+
     return (
         <main className="flex flex-col px-12 max-sm:px-4 font-[raleway] items-center">
             <section className="flex items-center max-sm:flex-col">
@@ -105,10 +119,33 @@ export default function Home() {
                 </div>
                 <img className="w-5/12 p-6 max-sm:w-full" src={changeImage} alt="changes" />
             </section>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+            <h2 className="text-4xl relative bg-gradient-to-tl font-bold from-violet-600 to-purple-800 text-transparent bg-clip-text flex items-center gap-3 pb-2 my-12
+            after:content-[''] after:absolute after:h-1 after:w-full after:-bottom-2 after:left-0 after:bg-gradient-to-r after:from-white after:via-purple-700 after:to-white
+            before:content-[''] before:absolute before:h-1 before:w-full before:-top-2 before:left-0 before:bg-gradient-to-r before:from-white before:via-purple-700 before:to-white
+            max-sm:text-2xl max-sm:text-center before:sm:hidden
+            ">Here's what people say about us</h2>
+
+            <section className="flex px-12 max-sm:px-0 items-center max-sm:flex-col mb-20">
+                <img className="w-6/12 p-6 max-sm:w-full max-sm:p-0" src={coffeeDrinkingImage} alt="dashboard" />
+                <Swiper
+                    effect={'cards'}
+                    grabCursor={true}
+                    modules={[EffectCards]}
+                >
+                    {reviews.map((review, index) => (
+                        <SwiperSlide
+                            key={index}
+                            className="flex p-4 px-6 flex-col gap-4 border rounded-3xl bg-gray-100"
+                        >
+                            <Rating defaultValue={review.rating} size="large" readOnly className="brightness-110" />
+                            <p className="text-purple-700 font-[raleway] text-xl font-medium antialiased">
+                                {review.text}
+                            </p>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </section>
+
         </main>
     )
 }

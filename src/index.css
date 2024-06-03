@@ -146,6 +146,15 @@ input::file-selector-button:hover {
     width: 80% !important;
     padding: 0 !important;
   }
+  .swiper{
+    width: 325px !important;
+    height: 400px !important;
+  }
+}
+
+.swiper {
+  width: 450px;
+  height: 325px;
 }
 
 /* bold purple */
