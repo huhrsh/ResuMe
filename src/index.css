@@ -146,16 +146,36 @@ input::file-selector-button:hover {
     width: 80% !important;
     padding: 0 !important;
   }
-  .swiper{
-    width: 300px !important;
-    height: 400px !important;
-  }
 }
 
-.swiper {
-  width: 450px;
-  height: 325px;
+.fade-enter {
+  opacity: 0;
+  scale: 0.9;
+  /* transform: translateX(-20px); */
 }
+
+.fade-enter-active {
+  opacity: 1;
+  scale: 1;
+  /* transform: translateX(0); */
+  transition: opacity 500ms, scale 500ms;
+}
+
+.fade-exit {
+  opacity: 1;
+  scale: 1;
+  /* transform: translateX(0); */
+}
+
+.fade-exit-active {
+  opacity: 0;
+  scale: 0.9;
+  /* transform: translateX(20px); */
+  transition: opacity 200ms, scale 500ms;
+}
+
+
+
 
 /* bold purple */
 
