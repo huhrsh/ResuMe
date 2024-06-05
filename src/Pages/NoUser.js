@@ -13,7 +13,7 @@ export default function NoUser() {
                     <h1 className='text-8xl max-sm:text-6xl max-sm:px-6 font-bold user-border-text'>
                         No user found by this username
                     </h1>
-                    <span className='text-4xl max-sm:text-2xl max-sm:px-6 user-border-text'>Visit <Link to='/'>ResuMe</Link> to get your own website.</span>
+                    <span className='text-4xl max-sm:text-2xl max-sm:px-6 user-border-text'>Visit <Link to='/'>Portify</Link> to get your own website.</span>
                 </div>
                 {/* <div className='w-1/2 flex items-center justify-start'>
                     <h1 className='animate__animated animate__fadeInRight z-50 text-9xl font-semibold user-loading-text'>

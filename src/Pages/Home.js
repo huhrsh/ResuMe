@@ -46,7 +46,7 @@ export default function Home() {
                         Do you wish to have a personal website?
                     </h1>
                     <p className="text-lg font-medium text-gray-600">
-                        With ResuMe, that dream becomes a reality. Just imagine - effortlessly enter your details and watch as your website comes to life, ready to be customized according to your unique style and preferences.
+                        With Portify, that dream becomes a reality. Just imagine - effortlessly enter your details and watch as your website comes to life, ready to be customized according to your unique style and preferences.
                     </p>
                     {/* <Link to='/user-info/username' className="w-fit rounded bg-purple-600 font-normal text-xl px-4 py-1.5 transition-all duration-200 text-white shadow-lg hover:bg-purple-800">Get Started</Link> */}
                 </div>

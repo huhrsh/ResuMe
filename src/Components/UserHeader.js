@@ -95,7 +95,7 @@ export default function UserHeader() {
                 <main className={`${userDetails.selectedStyle}-main`}>
                     <Outlet context={{ userDetails, setLoading }} />
                     <footer className="footer">
-                        Made with <Link target="_blank" to='/' className={`${userDetails.selectedStyle}-footer-text`}>ResuMe</Link>
+                        Made with <Link target="_blank" to='/' className={`${userDetails.selectedStyle}-footer-text`}>Portify</Link>
                     </footer>
                 </main>
             </>

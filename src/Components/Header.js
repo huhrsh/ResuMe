@@ -37,9 +37,9 @@ export default function Header() {
             <header className="shadow sticky top-0 left-0 bg-white z-50 shadow-purple-100 font-[raleway] px-12 py-4 flex justify-between items-center antialiased
             max-sm:px-4
             ">
-                <Link to='/' className="text-3xl bg-gradient-to-bl from-violet-600 to-purple-800 text-transparent bg-clip-text flex items-center gap-1 font-medium">
+                <Link to='/' className="text-3xl bg-gradient-to-bl from-violet-500 to-purple-800 text-transparent bg-clip-text flex items-center gap-1 font-semibold tracking-tighter">
                     <img src={profile} alt="logo" className="h-8 logo" />
-                    ResuMe
+                    Portify
                 </Link>
                 {!loading && (
                     user ?
