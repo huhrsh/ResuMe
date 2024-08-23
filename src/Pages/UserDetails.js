@@ -1,6 +1,12 @@
+import { useEffect } from "react";
 import cross from "../Assets/Images/cross-circle.png"
 
 export default function UserDetails({ userDetails, setSelectedUser }) {
+
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
+
     return (
         <div className="admin-user-details relative bg-white text-gray-900 p-8 rounded-lg shadow-lg w-full max-w-4xl mx-auto my-8 border border-gray-300"
              style={{ fontFamily: 'Raleway' }}>

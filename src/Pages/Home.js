@@ -7,7 +7,7 @@ import celebrateImage from "../Assets/Images/Celebration-cuate.png"
 import dashboardImage from "../Assets/Images/Control Panel-bro.png"
 import changeImage from "../Assets/Images/Version control-cuate.png"
 import coffeeDrinkingImage from "../Assets/Images/Coffee break-cuate.png"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import 'swiper/css';
@@ -19,6 +19,11 @@ import Rating from '@mui/material/Rating';
 import graphImage from "../Assets/Images/graph (15).png"
 
 export default function Home() {
+
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
+
     const [reviews, setReviews] = useState([
         { rating: 5, text: "Fantastic website! It made creating and customizing my portfolio site easy and enjoyable. Highly recommend!" },
         { rating: 5, text: "meow meow nyah" },

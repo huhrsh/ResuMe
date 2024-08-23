@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import defaultImage from "../Assets/Images/Certification-cuate.png";
 
 export default function UserCertifications() {
     const { userDetails } = useOutletContext();
     const certifications = userDetails.certifications;
+
+    
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
 
     if(!certifications){
         return(

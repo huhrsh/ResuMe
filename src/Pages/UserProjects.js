@@ -10,6 +10,10 @@ export default function UserProjects() {
     const [selectedProject, setSelectedProject] = useState(null);
     const projectDetailsRef = useRef(null);
 
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
+
     const handleProjectClick = (project) => {
         setSelectedProject(project);
         setTimeout(() => {

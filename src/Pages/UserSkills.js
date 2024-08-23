@@ -1,9 +1,13 @@
 import { useOutletContext } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function UserSkills() {
     const { userDetails } = useOutletContext();
     const skills = userDetails.skills;
+
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
 
     if(!skills){
         return(

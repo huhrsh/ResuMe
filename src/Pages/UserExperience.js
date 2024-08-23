@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 
 export default function UserExperience() {
     const { userDetails } = useOutletContext();
     const experiences = userDetails.experiences;
+
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
 
     if(!experiences){
         return(

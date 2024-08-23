@@ -7,6 +7,7 @@ export default function UserHome() {
     const animationRef = useRef(null);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (animationRef.current) {
             animationRef.current.addRandomSplats(30);
         }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
@@ -8,6 +8,11 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 
 export default function UserEducation() {
+
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
+
     const { userDetails } = useOutletContext();
     const educationDetails = userDetails?.education?.filter((edu) => edu.complete);
 

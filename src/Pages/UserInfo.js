@@ -7,6 +7,10 @@ export default function UserInfo() {
     const location = useLocation()
     const { user, loading } = useUser();
 
+            useEffect(()=>{
+                window.scrollTo(0, 0);
+            },[])
+
     const getEndUrlPart = () => {
         const parts = location.pathname.split('/');
         return parts[parts.length - 1];

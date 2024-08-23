@@ -13,6 +13,11 @@ export default function AdminDashboard() {
     const navigate = useNavigate()
     const [selectedUser, setSelectedUser] = useState()
     
+    
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
+
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);

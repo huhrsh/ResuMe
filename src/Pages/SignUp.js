@@ -24,7 +24,10 @@ export default function SignUp() {
     const confirmPasswordInputRef = useRef(null);
     const nameInputRef = useRef(null);
 
+
+    
     useEffect(() => {
+        window.scrollTo(0, 0);
         setLoading(true);
         if (user) {
             navigate('/');
@@ -109,8 +112,8 @@ export default function SignUp() {
                         setLoading(false)
                         navigate('/dashboard/general')
                     }
-                    else if(adminSnap.exists()){
-                        setUser({uid:user.uid, ...adminSnap.data(), admin:true})
+                    else if (adminSnap.exists()) {
+                        setUser({ uid: user.uid, ...adminSnap.data(), admin: true })
                         setLoading(false)
                         navigate('/admin-dashboard')
                     }

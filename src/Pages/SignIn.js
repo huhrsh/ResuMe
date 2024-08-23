@@ -19,7 +19,9 @@ export default function SignUp() {
     const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
 
+
     useEffect(() => {
+        window.scrollTo(0, 0);
         setLoading(true);
         if (user) {
             navigate('/');

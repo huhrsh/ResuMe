@@ -1,4 +1,3 @@
-import { PropagateLoader } from "react-spinners"
 import CircleLoader from "../Components/CircleLoader"
 
 export default function Loading() {

@@ -1,9 +1,13 @@
 import { Link, useOutletContext } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 export default function UserContacts() {
     const { userDetails } = useOutletContext();
     const contacts = userDetails.contacts;
+
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
 
     if(!contacts){
         return(
